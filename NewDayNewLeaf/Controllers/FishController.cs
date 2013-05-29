@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NewDayNewLeaf.Models;
+using System.Web.Http;
 
 namespace NewDayNewLeaf.Controllers
 {
-    public class FishController : Controller
+    public class FishController : ApiController
     {
         //
         // GET: /Fish/
