@@ -16,7 +16,7 @@ namespace NewDayNewLeaf
             );
             config.Routes.MapHttpRoute(
                 name: "Fish",
-                routeTemplate: "api/Fish/fishName",
+                routeTemplate: "api/Fish/{fishName}",
                 defaults: new { fishName = RouteParameter.Optional }
             );
 
