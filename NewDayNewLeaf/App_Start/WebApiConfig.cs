@@ -17,6 +17,7 @@ namespace NewDayNewLeaf
             config.Routes.MapHttpRoute(
                 name: "Fish",
                 routeTemplate: "api/Fish/fishName",
+                defaults: new { fishName = RouteParameter.Optional }
             );
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
