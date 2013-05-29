@@ -15,7 +15,7 @@ namespace NewDayNewLeaf.Controllers
 
         public Fish Get(string fishName)
         {
-            FishContext fc = new FishContext();
+            NewLeafContext fc = new NewLeafContext();
             fc.Configuration.ProxyCreationEnabled = false;
             var fishes = from f in fc.Fishes
                          where f.FishName == "Sea Bass"
@@ -27,7 +27,7 @@ namespace NewDayNewLeaf.Controllers
         }
         public Fish Get()
         {
-            FishContext fc = new FishContext();
+            NewLeafContext fc = new NewLeafContext();
 
             var ShadowSize = new ShadowSize
             {

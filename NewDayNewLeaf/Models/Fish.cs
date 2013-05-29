@@ -44,12 +44,4 @@ namespace NewDayNewLeaf.Models
         public int ShadowSizeID { get; set; }
         public string ShadowSizeText { get; set; }
     }
-
-    public class FishContext : DbContext
-    {
-        public DbSet<Fish> Fishes { get; set; }
-        public DbSet<FishTime> FishTimes { get; set; }
-        public DbSet<FishLocation> FishLocations { get; set; }
-        public DbSet<ShadowSize> ShadowSize { get; set; }
-    }
 }
