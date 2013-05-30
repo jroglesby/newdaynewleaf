@@ -68,9 +68,19 @@ namespace NewDayNewLeaf.Migrations
                 CheesySaying = "I caught a sea bass! Oh no, not again!"
             };
 
+            Fish stringfish = new Fish
+            {
+                FishName = "Stringfish",
+                Price = 15000,
+                Rarity = "Very Rare",
+                ShadowSize = huge,
+                CheesySaying = "OH MY GOSH! I caught a stringfish! This is AWESOME!"
+            };
+
             context.Fishes.AddOrUpdate(
                 f => f.FishName,
-                seaBass
+                seaBass,
+                stringfish
             );
 
             context.FishTimes.AddOrUpdate(
@@ -78,10 +88,20 @@ namespace NewDayNewLeaf.Migrations
                 {
                     Fish = seaBass,
                     FishLocation = ocean,
-                    DateBegin = new DateTime(1800, 1, 1),
-                    DateEnd = new DateTime(1800, 12, 31),
-                    TimeBegin = new DateTime(1800,1,1, 0, 0, 0),
-                    TimeEnd = new DateTime(1800,1,1, 23, 59, 59),
+                    DateBegin = new DateTime(2000, 1, 1),
+                    DateEnd = new DateTime(2000, 12, 31),
+                    TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
+                    TimeEnd = new DateTime(2000, 1, 1, 23, 59, 59),
+                    AdditionalInformation = ""
+                },
+                new FishTime
+                {
+                    Fish = stringfish,
+                    FishLocation = river,
+                    DateBegin = new DateTime(2000, 12, 1),
+                    DateEnd = new DateTime(2000, 2, 29),
+                    TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
+                    TimeEnd = new DateTime(2000, 1, 1, 9, 0, 0),
                     AdditionalInformation = ""
                 }
             );
