@@ -24,7 +24,7 @@ namespace NewDayNewLeaf.Controllers
             NewLeafContext nlc = new NewLeafContext();
             nlc.Configuration.ProxyCreationEnabled = false;
 
-            var fishes = nlc.Fishes.ToList();
+            var fishes = nlc.Fishes.Include("FishTimes").Include("ShadowSize").ToList();
             
             return fishes;
         }
