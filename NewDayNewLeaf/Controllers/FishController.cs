@@ -15,41 +15,27 @@ namespace NewDayNewLeaf.Controllers
 
         public Fish Get(string fishName)
         {
-            NewLeafContext fc = new NewLeafContext();
-            fc.Configuration.ProxyCreationEnabled = false;
-            var fishes = from f in fc.Fishes
-                         where f.FishName == "Sea Bass"
+            NewLeafContext nlc = new NewLeafContext();
+            nlc.Configuration.ProxyCreationEnabled = false;
+            var fishes = from f in nlc.Fishes
+                         where f.FishName == fishName
                          select f;
+
+            if (fishes.Count() == 0)
+                return new Fish();
 
             Fish seaBass = fishes.First();
 
             return seaBass;
         }
-        public Fish Get()
+        public List<Fish> Get()
         {
-            NewLeafContext fc = new NewLeafContext();
+            NewLeafContext nlc = new NewLeafContext();
+            nlc.Configuration.ProxyCreationEnabled = false;
 
-            var ShadowSize = new ShadowSize
-            {
-                ShadowSizeText = "Huge"
-            };
-
-            fc.ShadowSize.Add(ShadowSize);
-            fc.SaveChanges();
-
-            var fish = new Fish
-            {
-                FishName = "Sea Bass",
-                Price = 300,
-                Rarity = "Very common",
-                CheesySaying = "Oh no, not again!",
-                ShadowSizeID = fc.ShadowSize.Single(ss => ss.ShadowSizeText == "Huge").ShadowSizeID
-            };
-
-            fc.Fishes.Add(fish);
-            fc.SaveChanges();
-
-            return fish;
+            var fishes = nlc.Fishes.ToList();
+            
+            return fishes;
         }
 
     }

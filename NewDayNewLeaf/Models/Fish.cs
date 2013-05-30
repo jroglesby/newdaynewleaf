@@ -28,6 +28,7 @@ namespace NewDayNewLeaf.Models
         public DateTime DateEnd { get; set; }
         public DateTime TimeBegin { get; set; }
         public DateTime TimeEnd { get; set; }
+        public string AdditionalInformation { get; set; }
 
         public virtual Fish Fish { get; set; }
         public virtual FishLocation FishLocation { get; set; }
