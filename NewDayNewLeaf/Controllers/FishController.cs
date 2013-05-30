@@ -16,7 +16,7 @@ namespace NewDayNewLeaf.Controllers
         public Fish Get(string fishName)
         {
             NewLeafContext nlc = new NewLeafContext();
-            Fish seaBass = nlc.Fishes.Include("FishTimes").Include("ShadowSize").FirstOrDefault(f => f.FishName == fishName);
+            Fish seaBass = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("FishRarity").FirstOrDefault(f => f.FishName == fishName);
             return seaBass;
         }
         public List<Fish> Get()
@@ -24,7 +24,7 @@ namespace NewDayNewLeaf.Controllers
             NewLeafContext nlc = new NewLeafContext();
             nlc.Configuration.ProxyCreationEnabled = false;
 
-            var fishes = nlc.Fishes.Include("FishTimes").Include("ShadowSize").ToList();
+            var fishes = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("FishRarity").ToList();
             
             return fishes;
         }
