@@ -16,16 +16,7 @@ namespace NewDayNewLeaf.Controllers
         public Fish Get(string fishName)
         {
             NewLeafContext nlc = new NewLeafContext();
-            nlc.Configuration.ProxyCreationEnabled = false;
-            var fishes = from f in nlc.Fishes
-                         where f.FishName == fishName
-                         select f;
-
-            if (fishes.Count() == 0)
-                return new Fish();
-
-            Fish seaBass = fishes.First();
-
+            Fish seaBass = nlc.Fishes.Include("FishTimes").Include("ShadowSize").FirstOrDefault(f => f.FishName == fishName);
             return seaBass;
         }
         public List<Fish> Get()

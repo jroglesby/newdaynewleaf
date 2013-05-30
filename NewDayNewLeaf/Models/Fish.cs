@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Runtime.Serialization;
 
 namespace NewDayNewLeaf.Models
 {
+
     public class Fish
     {
         public int FishID { get; set; }
@@ -15,8 +17,8 @@ namespace NewDayNewLeaf.Models
         public string Rarity { get; set; }
         public string CheesySaying { get; set; }
 
-        public virtual ShadowSize ShadowSize { get; set; }
-        public virtual ICollection<FishTime> FishTimes { get; set; }
+        public ShadowSize ShadowSize { get; set; }
+        public ICollection<FishTime> FishTimes { get; set; }
     }
 
     public class FishTime
@@ -30,8 +32,9 @@ namespace NewDayNewLeaf.Models
         public DateTime TimeEnd { get; set; }
         public string AdditionalInformation { get; set; }
 
-        public virtual Fish Fish { get; set; }
-        public virtual FishLocation FishLocation { get; set; }
+        
+        public Fish Fish { get; set; }
+        public FishLocation FishLocation { get; set; }
     }
 
     public class FishLocation
