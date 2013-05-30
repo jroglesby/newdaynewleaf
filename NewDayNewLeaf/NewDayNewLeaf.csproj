@@ -146,16 +146,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Migrations\201305302323427_Initial.cs" />
+    <Compile Include="Migrations\201305302323427_Initial.Designer.cs">
+      <DependentUpon>201305302323427_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\FishController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201305300025216_Initial.cs" />
-    <Compile Include="Migrations\201305300025216_Initial.Designer.cs">
-      <DependentUpon>201305300025216_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fish.cs" />
     <Compile Include="Models\NewLeafContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,8 +272,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201305300025216_Initial.resx">
-      <DependentUpon>201305300025216_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201305302323427_Initial.resx">
+      <DependentUpon>201305302323427_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

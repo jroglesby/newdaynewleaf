@@ -36,10 +36,18 @@ namespace NewDayNewLeaf.Migrations
             ShadowSize veryLarge = new ShadowSize { ShadowSizeText = "Very Large" };
             ShadowSize huge = new ShadowSize { ShadowSizeText = "Huge" };
 
+            FishRarity veryCommon = new FishRarity { Rarity = "Very Common" };
+            FishRarity common = new FishRarity { Rarity = "Common" };
+            FishRarity uncommon = new FishRarity { Rarity = "Uncommon" };
+            FishRarity rare = new FishRarity { Rarity = "Rare" };
+            FishRarity veryRare = new FishRarity { Rarity = "Very Rare" };
+
             FishLocation ocean = new FishLocation { LocationName = "Ocean" };
             FishLocation river = new FishLocation { LocationName = "River" };
             FishLocation pond = new FishLocation { LocationName = "Pond" };
             FishLocation tropicalIsland = new FishLocation { LocationName = "Tropical Island" };
+            FishLocation waterfall = new FishLocation {LocationName = "Waterfall" };
+            FishLocation riverPond = new FishLocation {LocationName = "River Pond" };
 
             context.ShadowSize.AddOrUpdate(
                 ss => ss.ShadowSizeText,
@@ -51,19 +59,30 @@ namespace NewDayNewLeaf.Migrations
                 huge
             );
 
+            context.FishRarity.AddOrUpdate(
+                fr => fr.Rarity,
+                veryCommon,
+                common,
+                uncommon,
+                rare,
+                veryRare
+            );
+
             context.FishLocations.AddOrUpdate(
                 fl => fl.LocationName,
                 ocean,
                 river,
                 pond,
-                tropicalIsland
+                tropicalIsland,
+                waterfall,
+                riverPond
             );
 
             Fish seaBass = new Fish
             {
                 FishName = "Sea Bass",
                 Price = 300,
-                Rarity = "Very Common",
+                Rarity = veryCommon,
                 ShadowSize = veryLarge,
                 CheesySaying = "I caught a sea bass! Oh no, not again!"
             };
@@ -72,7 +91,7 @@ namespace NewDayNewLeaf.Migrations
             {
                 FishName = "Stringfish",
                 Price = 15000,
-                Rarity = "Very Rare",
+                Rarity = veryRare,
                 ShadowSize = huge,
                 CheesySaying = "OH MY GOSH! I caught a stringfish! This is AWESOME!"
             };

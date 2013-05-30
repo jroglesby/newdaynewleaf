@@ -12,6 +12,7 @@ namespace NewDayNewLeaf.Models
         public DbSet<FishTime> FishTimes { get; set; }
         public DbSet<FishLocation> FishLocations { get; set; }
         public DbSet<ShadowSize> ShadowSize { get; set; }
+        public DbSet<FishRarity> FishRarity { get; set; }
 
     }
 }

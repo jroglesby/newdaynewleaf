@@ -15,12 +15,24 @@ namespace NewDayNewLeaf.Migrations
                         FishName = c.String(),
                         Price = c.Int(nullable: false),
                         ShadowSizeID = c.Int(nullable: false),
-                        Rarity = c.String(),
+                        RarityID = c.Int(nullable: false),
                         CheesySaying = c.String(),
+                        Rarity_FishRarityID = c.Int(),
                     })
                 .PrimaryKey(t => t.FishID)
+                .ForeignKey("dbo.FishRarities", t => t.Rarity_FishRarityID)
                 .ForeignKey("dbo.ShadowSizes", t => t.ShadowSizeID, cascadeDelete: true)
+                .Index(t => t.Rarity_FishRarityID)
                 .Index(t => t.ShadowSizeID);
+            
+            CreateTable(
+                "dbo.FishRarities",
+                c => new
+                    {
+                        FishRarityID = c.Int(nullable: false, identity: true),
+                        Rarity = c.String(),
+                    })
+                .PrimaryKey(t => t.FishRarityID);
             
             CreateTable(
                 "dbo.ShadowSizes",
@@ -66,12 +78,15 @@ namespace NewDayNewLeaf.Migrations
             DropIndex("dbo.FishTimes", new[] { "FishLocationID" });
             DropIndex("dbo.FishTimes", new[] { "FishID" });
             DropIndex("dbo.Fish", new[] { "ShadowSizeID" });
+            DropIndex("dbo.Fish", new[] { "Rarity_FishRarityID" });
             DropForeignKey("dbo.FishTimes", "FishLocationID", "dbo.FishLocations");
             DropForeignKey("dbo.FishTimes", "FishID", "dbo.Fish");
             DropForeignKey("dbo.Fish", "ShadowSizeID", "dbo.ShadowSizes");
+            DropForeignKey("dbo.Fish", "Rarity_FishRarityID", "dbo.FishRarities");
             DropTable("dbo.FishLocations");
             DropTable("dbo.FishTimes");
             DropTable("dbo.ShadowSizes");
+            DropTable("dbo.FishRarities");
             DropTable("dbo.Fish");
         }
     }
