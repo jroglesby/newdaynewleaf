@@ -35,7 +35,7 @@ namespace NewDayNewLeaf.Models
 
         
         public Fish Fish { get; set; }
-        public FishLocation FishLocation { get; set; }
+        public virtual FishLocation FishLocation { get; set; }
     }
 
     public class FishLocation

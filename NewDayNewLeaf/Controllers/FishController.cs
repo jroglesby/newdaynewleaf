@@ -16,16 +16,15 @@ namespace NewDayNewLeaf.Controllers
         public Fish Get(string fishName)
         {
             NewLeafContext nlc = new NewLeafContext();
-            Fish seaBass = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("Rarity").FirstOrDefault(f => f.FishName == fishName);
+            Fish seaBass = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("Rarity").Include("FishLocation").FirstOrDefault(f => f.FishName == fishName);
+            
             return seaBass;
         }
         public List<Fish> Get()
         {
             NewLeafContext nlc = new NewLeafContext();
             nlc.Configuration.ProxyCreationEnabled = false;
-
-            var fishes = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("Rarity").ToList();
-            
+            var fishes = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("FishTimes.FishLocation").Include("Rarity").ToList();
             return fishes;
         }
 

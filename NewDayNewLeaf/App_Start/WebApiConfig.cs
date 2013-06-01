@@ -10,9 +10,14 @@ namespace NewDayNewLeaf
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "Fish",
+                name: "GetSpecificFish",
                 routeTemplate: "api/{controller}/{fishName}",
                 defaults: new { fishName = RouteParameter.Optional }
+            );
+            config.Routes.MapHttpRoute(
+                name: "GenericAction",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
             );
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
