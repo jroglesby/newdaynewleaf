@@ -12,7 +12,23 @@
     
     @section Scripts {
         <script>
-            var GetFishURL = '/api/Fish/';
+
+
+            function getDateTicks(date) {
+                var epochTicks = 621355968000000000;
+                var ticksPerMillisecond = 10000;
+                var ticks = epochTicks + (date.getTime() * ticksPerMillisecond);
+                return ticks;
+            }
+
+            var currentdate = new Date();
+            currentticks = getDateTicks(currentdate);
+
+
+
+
+            var GetFishURL = '/api/Fish/CurrentFish/'+currentticks;
+            
 
             var buildFishTable = function (fishList) {
 

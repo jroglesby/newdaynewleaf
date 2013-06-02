@@ -27,6 +27,28 @@ namespace NewDayNewLeaf.Controllers
             var fishes = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("FishTimes.FishLocation").Include("Rarity").ToList();
             return fishes;
         }
+        public List<Fish> GetCurrentFish(long ticks)
+        {
+            NewLeafContext nlc = new NewLeafContext();
+            nlc.Configuration.ProxyCreationEnabled = false;
+
+            DateTime currentDate = new DateTime(ticks);
+
+            List<Fish> fishes = new List<Fish>();
+
+            DateTime datePart = new DateTime(2000, currentDate.Month, currentDate.Day);
+
+            DateTime timePart = new DateTime(2000, 1, 1, currentDate.Hour, currentDate.Minute, currentDate.Second);
+
+            var fishTimes = nlc.FishTimes.Include("Fish").Include("Fish.Rarity").Include("Fish.ShadowSize").Include("FishLocation").Where(ft => ft.DateBegin <= datePart && ft.DateEnd >= datePart && ft.TimeBegin <= timePart && ft.TimeEnd >= timePart).ToList();
+
+            foreach (FishTime ft in fishTimes)
+            {
+                fishes.Add(ft.Fish);
+            }
+
+            return fishes;
+        }
 
     }
 }

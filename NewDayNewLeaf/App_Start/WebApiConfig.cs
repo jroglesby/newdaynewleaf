@@ -8,12 +8,19 @@ namespace NewDayNewLeaf
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
+        
         {
             config.Routes.MapHttpRoute(
                 name: "GetSpecificFish",
-                routeTemplate: "api/{controller}/{fishName}",
-                defaults: new { fishName = RouteParameter.Optional }
+                routeTemplate: "api/Fish/{fishName}",
+                defaults: new { controller="Fish", action="Get", fishName = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: "GetCurrentFish",
+                routeTemplate: "api/Fish/CurrentFish/{ticks}",
+                defaults: new { controller = "Fish", action = "GetCurrentFish", ticks = RouteParameter.Optional }
+            );
+
             config.Routes.MapHttpRoute(
                 name: "GenericAction",
                 routeTemplate: "api/{controller}/{action}/{id}",
