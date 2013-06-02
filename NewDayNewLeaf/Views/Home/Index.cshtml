@@ -18,8 +18,13 @@
 
                 $.each(fishList, function (i, fish) {
                     var fishRow = document.createElement("tr");
+
                     var inspectRow = document.createElement("td");
                     inspectRow.className = "inspectFishCol";
+                    var inspect = document.createElement("a");
+                    inspect.href = "/FishInfo/" + fish.FishName;
+                    inspect.appendChild(document.createTextNode("More Info"));
+                    inspectRow.appendChild(inspect);
 
                     var fishName = document.createElement("td");
                     fishName.className = "fishNameCol";
