@@ -1,25 +1,20 @@
-﻿<div id="body">
+﻿
+
+<h2>FishInfo</h2>
+<div id="body">
     <section id="fishSection">
         <div id="allFish">
-            <table id="fishTable">
-                <tr>
-                    <td class="inspectFishCol"></td><td class="fishNameCol">Name</td><td class="fishLocationCol">Location</td><td class="fishPriceCol">Price</td><td class="fishRarityCol">Rarity</td><td class="fishSizeCol">Shadow Size</td>
-                </tr>
-            </table>
 
         </div>
     </section>
     
     @section Scripts {
         <script>
-            var GetFishURL = '/api/Fish/';
+            var GetFishInfoURL = '/api/Fish/@ViewBag.FishName';
 
-            var buildFishTable = function (fishList) {
+            var buildFishInfo = function (fishList) {
 
                 $.each(fishList, function (i, fish) {
-                    var fishRow = document.createElement("tr");
-                    var inspectRow = document.createElement("td");
-                    inspectRow.className = "inspectFishCol";
 
                     var fishName = document.createElement("td");
                     fishName.className = "fishNameCol";

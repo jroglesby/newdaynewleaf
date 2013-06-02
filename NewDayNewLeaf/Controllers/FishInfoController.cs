@@ -6,12 +6,18 @@ using System.Web.Mvc;
 
 namespace NewDayNewLeaf.Controllers
 {
-    public class HomeController : Controller
+    public class FishInfoController : Controller
     {
-        public ActionResult Index()
+        //
+        // GET: /FishInfo/
+
+        public ActionResult Index(string fishName)
         {
             ViewBag.Title = "New Day, New Leaf";
+            ViewBag.FishName = fishName;
+
             return View();
         }
+
     }
 }
