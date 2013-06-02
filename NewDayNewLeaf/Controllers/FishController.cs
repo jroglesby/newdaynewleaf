@@ -16,7 +16,7 @@ namespace NewDayNewLeaf.Controllers
         public Fish Get(string fishName)
         {
             NewLeafContext nlc = new NewLeafContext();
-            Fish seaBass = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("Rarity").Include("FishLocation").FirstOrDefault(f => f.FishName == fishName);
+            Fish seaBass = nlc.Fishes.Include("FishTimes").Include("ShadowSize").Include("Rarity").Include("FishTimes.FishLocation").FirstOrDefault(f => f.FishName == fishName);
             
             return seaBass;
         }
