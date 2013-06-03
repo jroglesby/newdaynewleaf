@@ -13,8 +13,6 @@ namespace NewDayNewLeaf.Models
         public int FishID { get; set; }
         public string FishName { get; set; }
         public int Price { get; set; }
-        public int ShadowSizeID { get; set; }
-        public int RarityID { get; set; }
         public string CheesySaying { get; set; }
 
         public FishRarity Rarity { get; set; }
@@ -25,8 +23,6 @@ namespace NewDayNewLeaf.Models
     public class FishTime
     {
         public int FishTimeID { get; set; }
-        public int FishID { get; set; }
-        public int FishLocationID { get; set; }
         public DateTime DateBegin { get; set; }
         public DateTime DateEnd { get; set; }
         public DateTime TimeBegin { get; set; }

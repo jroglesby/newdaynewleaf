@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201306030059101_Initial.Designer.cs">
       <DependentUpon>201306030059101_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201306031741270_RemoveKeys.cs" />
+    <Compile Include="Migrations\201306031741270_RemoveKeys.Designer.cs">
+      <DependentUpon>201306031741270_RemoveKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fish.cs" />
     <Compile Include="Models\FishVM.cs" />
@@ -279,6 +283,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201306030059101_Initial.resx">
       <DependentUpon>201306030059101_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306031741270_RemoveKeys.resx">
+      <DependentUpon>201306031741270_RemoveKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

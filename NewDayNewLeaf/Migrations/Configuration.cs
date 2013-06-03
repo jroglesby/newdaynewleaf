@@ -420,7 +420,7 @@ namespace NewDayNewLeaf.Migrations
                 FishName = "Hammerhead Shark",
                 Price = 8000,
                 Rarity = rare,
-                ShadowSize = huge,
+                ShadowSize = hugeWithFin,
                 CheesySaying = "unknown"
             };
 			
@@ -530,7 +530,7 @@ namespace NewDayNewLeaf.Migrations
                 FishName = "Ocean Sunfish",
                 Price = 4000,
                 Rarity = uncommon,
-                ShadowSize = huge,
+                ShadowSize = hugeWithFin,
                 CheesySaying = "unknown"
             };
 			
@@ -670,7 +670,7 @@ namespace NewDayNewLeaf.Migrations
                 FishName = "Saw Shark",
                 Price = 12000,
                 Rarity = veryRare,
-                ShadowSize = huge,
+                ShadowSize = hugeWithFin,
                 CheesySaying = ""
             };
 			
@@ -710,7 +710,7 @@ namespace NewDayNewLeaf.Migrations
                 FishName = "Shark",
                 Price = 15000,
                 Rarity = veryRare,
-                ShadowSize = huge,
+                ShadowSize = hugeWithFin,
                 CheesySaying = ""
             };
 			
@@ -780,7 +780,7 @@ namespace NewDayNewLeaf.Migrations
                 FishName = "Whale Shark",
                 Price = 13000,
                 Rarity = veryRare,
-                ShadowSize = huge,
+                ShadowSize = hugeWithFin,
                 CheesySaying = ""
             };
 			
@@ -805,7 +805,7 @@ namespace NewDayNewLeaf.Migrations
             };
 			
             context.Fishes.AddOrUpdate(
-                f => f.FishName,
+                f => f.FishID,
                 seaBass,
                 stringfish,
 				bitterling,
