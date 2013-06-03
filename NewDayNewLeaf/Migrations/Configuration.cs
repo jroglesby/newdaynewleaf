@@ -29,39 +29,42 @@ namespace NewDayNewLeaf.Migrations
             // );
             //
 
-            ShadowSize verySmall = new ShadowSize { ShadowSizeText = "Very Small" };
-            ShadowSize small = new ShadowSize { ShadowSizeText = "Small" };
-            ShadowSize medium = new ShadowSize { ShadowSizeText = "Medium" };
-            ShadowSize large = new ShadowSize { ShadowSizeText = "Large" };
-            ShadowSize veryLarge = new ShadowSize { ShadowSizeText = "Very Large" };
-            ShadowSize huge = new ShadowSize { ShadowSizeText = "Huge" };
+            ShadowSize verySmall = new ShadowSize { ShadowSizeID = 1, ShadowSizeText = "Very Small" };
+            ShadowSize small = new ShadowSize { ShadowSizeID = 2, ShadowSizeText = "Small" };
+            ShadowSize medium = new ShadowSize { ShadowSizeID = 3, ShadowSizeText = "Medium" };
+            ShadowSize large = new ShadowSize { ShadowSizeID = 4, ShadowSizeText = "Large" };
+            ShadowSize veryLarge = new ShadowSize { ShadowSizeID = 5, ShadowSizeText = "Very Large" };
+            ShadowSize huge = new ShadowSize { ShadowSizeID = 6, ShadowSizeText = "Huge" };
+            ShadowSize hugeWithFin = new ShadowSize { ShadowSizeID = 7, ShadowSizeText = "Huge With Fin" };
 
-            FishRarity veryCommon = new FishRarity { Rarity = "Very Common" };
-            FishRarity fairlyCommon = new FishRarity { Rarity = "Fairly Common" };
-			FishRarity common = new FishRarity { Rarity = "Common" };
-            FishRarity uncommon = new FishRarity { Rarity = "Uncommon" };
-            FishRarity rare = new FishRarity { Rarity = "Rare" };
-            FishRarity veryRare = new FishRarity { Rarity = "Very Rare" };
+            FishRarity veryCommon = new FishRarity { FishRarityID = 1, Rarity = "Very Common" };
+            FishRarity fairlyCommon = new FishRarity { FishRarityID = 2, Rarity = "Fairly Common" };
+            FishRarity common = new FishRarity { FishRarityID = 3, Rarity = "Common" };
+            FishRarity uncommon = new FishRarity { FishRarityID = 4, Rarity = "Uncommon" };
+            FishRarity rare = new FishRarity { FishRarityID = 5, Rarity = "Rare" };
+            FishRarity veryRare = new FishRarity { FishRarityID = 6, Rarity = "Very Rare" };
 
-            FishLocation ocean = new FishLocation { LocationName = "Ocean" };
-            FishLocation river = new FishLocation { LocationName = "River" };
-            FishLocation pond = new FishLocation { LocationName = "Pond" };
-            FishLocation tropicalIsland = new FishLocation { LocationName = "Tropical Island" };
-            FishLocation waterfall = new FishLocation {LocationName = "Waterfall" };
-            FishLocation riverPond = new FishLocation {LocationName = "River Pond" };
+            FishLocation ocean = new FishLocation { FishLocationID = 1, LocationName = "Ocean" };
+            FishLocation river = new FishLocation { FishLocationID = 2, LocationName = "River" };
+            FishLocation pond = new FishLocation { FishLocationID = 3, LocationName = "Pond" };
+            FishLocation tropicalIsland = new FishLocation { FishLocationID = 4, LocationName = "Tropical Island" };
+            FishLocation waterfall = new FishLocation { FishLocationID = 5, LocationName = "Waterfall" };
+            FishLocation riverPond = new FishLocation { FishLocationID = 6, LocationName = "River Pond" };
+            FishLocation riverMouth = new FishLocation { FishLocationID = 7, LocationName = "River Mouth" };
 
             context.ShadowSize.AddOrUpdate(
-                ss => ss.ShadowSizeText,
+                ss => ss.ShadowSizeID,
                 verySmall,
                 small,
                 medium,
                 large,
                 veryLarge,
-                huge
+                huge,
+                hugeWithFin
             );
 
             context.FishRarity.AddOrUpdate(
-                fr => fr.Rarity,
+                fr => fr.FishRarityID,
                 veryCommon,
 				fairlyCommon,
                 common,
@@ -71,17 +74,19 @@ namespace NewDayNewLeaf.Migrations
             );
 
             context.FishLocations.AddOrUpdate(
-                fl => fl.LocationName,
+                fl => fl.FishLocationID,
                 ocean,
                 river,
                 pond,
                 tropicalIsland,
                 waterfall,
-                riverPond
+                riverPond,
+                riverMouth
             );
 
             Fish seaBass = new Fish
             {
+                FishID = 1,
                 FishName = "Sea Bass",
                 Price = 200,
                 Rarity = veryCommon,
@@ -91,6 +96,7 @@ namespace NewDayNewLeaf.Migrations
 
             Fish stringfish = new Fish
             {
+                FishID = 2,
                 FishName = "Stringfish",
                 Price = 15000,
                 Rarity = veryRare,
@@ -100,6 +106,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish bitterling = new Fish
             {
+                FishID = 3,
                 FishName = "Bitterling",
                 Price = 900,
                 Rarity = fairlyCommon,
@@ -109,6 +116,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish angelfish = new Fish
             {
+                FishID = 4,
                 FishName = "Angelfish",
                 Price = 3000,
                 Rarity = rare,
@@ -118,6 +126,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish arapaima = new Fish
             {
+                FishID = 5,
                 FishName = "Arapaima",
                 Price = 10000,
                 Rarity = rare,
@@ -127,6 +136,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish arowana = new Fish
             {
+                FishID = 6,
                 FishName = "Arowana",
                 Price = 10000,
                 Rarity = rare,
@@ -136,6 +146,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish barbelSteed = new Fish
             {
+                FishID = 7,
                 FishName = "Barbel Steed",
                 Price = 200,
                 Rarity = rare,
@@ -145,6 +156,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish barredKnife = new Fish
             {
+                FishID = 8,
                 FishName = "Barred Knifejaw",
                 Price = 5000,
                 Rarity = rare,
@@ -154,6 +166,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish blackBass = new Fish
             {
+                FishID = 9,
                 FishName = "Black Bass",
                 Price = 300,
                 Rarity = common,
@@ -163,6 +176,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish blowFish = new Fish
             {
+                FishID = 10,
                 FishName = "Blow Fish",
                 Price = 125,
                 Rarity = uncommon,
@@ -172,6 +186,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish blueMarlin = new Fish
             {
+                FishID = 11,
                 FishName = "Blue Marlin",
                 Price = 10000,
                 Rarity = rare,
@@ -181,6 +196,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish bluegill = new Fish
             {
+                FishID = 12,
                 FishName = "Bluegill",
                 Price = 120,
                 Rarity = uncommon,
@@ -190,6 +206,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish butterflyFish = new Fish
             {
+                FishID = 13,
                 FishName = "Butterfly Fish",
                 Price = 1000,
                 Rarity = uncommon,
@@ -199,6 +216,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish carp = new Fish
             {
+                FishID = 14,
                 FishName = "Carp",
                 Price = 300,
                 Rarity = fairlyCommon,
@@ -208,6 +226,7 @@ namespace NewDayNewLeaf.Migrations
 		
 			Fish catfish = new Fish
             {
+                FishID = 15,
                 FishName = "Catfish",
                 Price = 800,
                 Rarity = fairlyCommon,
@@ -217,6 +236,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish charFish = new Fish
             {
+                FishID = 16,
                 FishName = "Char",
                 Price = 3800,
                 Rarity = uncommon,
@@ -226,6 +246,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish cherrySalmon = new Fish
             {
+                FishID = 17,
                 FishName = "Cherry Salmon",
                 Price = 1000,
                 Rarity = uncommon,
@@ -235,6 +256,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish clownfish = new Fish
             {
+                FishID = 18,
                 FishName = "Clownfish",
                 Price = 650,
                 Rarity = uncommon,
@@ -244,6 +266,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish coelacanth = new Fish
             {
+                FishID = 19,
                 FishName = "Coelacanth",
                 Price = 15000,
                 Rarity = veryRare,
@@ -253,6 +276,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish crawfish = new Fish
             {
+                FishID = 20,
                 FishName = "Crawfish",
                 Price = 200,
                 Rarity = common,
@@ -262,6 +286,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish crucianCarp = new Fish
             {
+                FishID = 21,
                 FishName = "Crucian Carp",
                 Price = 120,
                 Rarity = fairlyCommon,
@@ -271,6 +296,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish dab = new Fish
             {
+                FishID = 22,
                 FishName = "Dab",
                 Price = 300,
                 Rarity = fairlyCommon,
@@ -280,6 +306,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish dace = new Fish
             {
+                FishID = 23,
                 FishName = "Dace",
                 Price = 200,
                 Rarity = fairlyCommon,
@@ -289,6 +316,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish dorado = new Fish
             {
+                FishID = 24,
                 FishName = "Dorado",
                 Price = 15000,
                 Rarity = veryRare,
@@ -298,6 +326,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish eel = new Fish
             {
+                FishID = 25,
                 FishName = "Eel",
                 Price = 2000,
                 Rarity = fairlyCommon,
@@ -307,6 +336,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish footballFish = new Fish
             {
+                FishID = 26,
                 FishName = "Football Fish",
                 Price = 2500,
                 Rarity = uncommon,
@@ -316,6 +346,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish freshwaterGoby = new Fish
             {
+                FishID = 27,
                 FishName = "Freshwater Goby",
                 Price = 300,
                 Rarity = rare,
@@ -325,6 +356,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish frog = new Fish
             {
+                FishID = 28,
                 FishName = "Frog",
                 Price = 120,
                 Rarity = veryCommon,
@@ -334,6 +366,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish gar = new Fish
             {
+                FishID = 29,
                 FishName = "Gar",
                 Price = 6000,
                 Rarity = rare,
@@ -343,6 +376,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish giantSnakehead = new Fish
             {
+                FishID = 30,
                 FishName = "Giant Snakehead",
                 Price = 5500,
                 Rarity = uncommon,
@@ -352,6 +386,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish giantTrrevally = new Fish
             {
+                FishID = 31,
                 FishName = "Giant Trrevally",
                 Price = 4500,
                 Rarity = rare,
@@ -361,6 +396,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish goldfish = new Fish
             {
+                FishID = 32,
                 FishName = "Goldfish",
                 Price = 1300,
                 Rarity = rare,
@@ -370,6 +406,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish guppy = new Fish
             {
+                FishID = 33,
                 FishName = "Guppy",
                 Price = 1300,
                 Rarity = rare,
@@ -379,6 +416,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish hammerhead = new Fish
             {
+                FishID = 34,
                 FishName = "Hammerhead Shark",
                 Price = 8000,
                 Rarity = rare,
@@ -388,6 +426,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish horseMackerel = new Fish
             {
+                FishID = 35,
                 FishName = "Horse Mackerel",
                 Price = 150,
                 Rarity = common,
@@ -397,6 +436,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish killifish = new Fish
             {
+                FishID = 36,
                 FishName = "Killifish",
                 Price = 300,
                 Rarity = uncommon,
@@ -406,6 +446,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish kingSalmon = new Fish
             {
+                FishID = 37,
                 FishName = "King Salmon",
                 Price = 1800,
                 Rarity = uncommon,
@@ -415,6 +456,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish koi = new Fish
             {
+                FishID = 38,
                 FishName = "Koi",
                 Price = 4000,
                 Rarity = rare,
@@ -424,6 +466,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish loach = new Fish
             {
+                FishID = 39,
                 FishName = "Loach",
                 Price = 300,
                 Rarity = common,
@@ -433,6 +476,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish morayEel = new Fish
             {
+                FishID = 40,
                 FishName = "Moray Eel",
                 Price = 2000,
                 Rarity = uncommon,
@@ -442,6 +486,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish napoleonfish = new Fish
             {
+                FishID = 41,
                 FishName = "Napoleonfish",
                 Price = 10000,
                 Rarity = rare,
@@ -451,6 +496,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish neonTetra = new Fish
             {
+                FishID = 42,
                 FishName = "Neon Tetra",
                 Price = 500,
                 Rarity = uncommon,
@@ -460,6 +506,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish nibbleFish = new Fish
             {
+                FishID = 43,
                 FishName = "Nibble Fish",
                 Price = 1500,
                 Rarity = uncommon,
@@ -469,6 +516,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish oarFish = new Fish
             {
+                FishID = 44,
                 FishName = "Oar Fish",
                 Price = 9000,
                 Rarity = veryRare,
@@ -478,6 +526,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish oceanSunfish = new Fish
             {
+                FishID = 45,
                 FishName = "Ocean Sunfish",
                 Price = 4000,
                 Rarity = uncommon,
@@ -487,6 +536,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish oliveFlounder = new Fish
             {
+                FishID = 46,
                 FishName = "Olive Flounder",
                 Price = 800,
                 Rarity = uncommon,
@@ -496,6 +546,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish paleChub = new Fish
             {
+                FishID = 47,
                 FishName = "Pale Chub",
                 Price = 200,
                 Rarity = uncommon,
@@ -505,6 +556,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish pike = new Fish
             {
+                FishID = 48,
                 FishName = "Pike",
                 Price = 1800,
                 Rarity = uncommon,
@@ -514,6 +566,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish piranha = new Fish
             {
+                FishID = 49,
                 FishName = "Piranha",
                 Price = 2500,
                 Rarity = rare,
@@ -523,6 +576,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish pondSmelt = new Fish
             {
+                FishID = 50,
                 FishName = "Pond Smelt",
                 Price = 300,
                 Rarity = common,
@@ -532,6 +586,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish popeyedGoldfish = new Fish
             {
+                FishID = 51,
                 FishName = "Pop-eyed Goldfish",
                 Price = 1300,
                 Rarity = rare,
@@ -541,6 +596,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish pufferFish = new Fish
             {
+                FishID = 52,
                 FishName = "Puffer Fish",
                 Price = 240,
                 Rarity = uncommon,
@@ -550,6 +606,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish rainbowTrout = new Fish
             {
+                FishID = 53,
                 FishName = "Rainbow Trout",
                 Price = 800,
                 Rarity = fairlyCommon,
@@ -559,6 +616,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish ray = new Fish
             {
+                FishID = 54,
                 FishName = "Ray",
                 Price = 3000,
                 Rarity = rare,
@@ -568,6 +626,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish redSnapper = new Fish
             {
+                FishID = 55,
                 FishName = "Red Snapper",
                 Price = 3000,
                 Rarity = uncommon,
@@ -577,6 +636,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish ribbonEel = new Fish
             {
+                FishID = 56,
                 FishName = "Ribbon Eel",
                 Price = 600,
                 Rarity = uncommon,
@@ -586,6 +646,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish saddledBichir = new Fish
             {
+                FishID = 57,
                 FishName = "Saddled Bichir",
                 Price = 4000,
                 Rarity = rare,
@@ -595,6 +656,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish salmon = new Fish
             {
+                FishID = 58,
                 FishName = "Salmon",
                 Price = 700,
                 Rarity = common,
@@ -604,6 +666,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish sawShark = new Fish
             {
+                FishID = 59,
                 FishName = "Saw Shark",
                 Price = 12000,
                 Rarity = veryRare,
@@ -613,6 +676,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish seaButterfly = new Fish
             {
+                FishID = 60,
                 FishName = "SeaButterfly",
                 Price = 1000,
                 Rarity = uncommon,
@@ -622,6 +686,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish seahorse = new Fish
             {
+                FishID = 61,
                 FishName = "Seahorse",
                 Price = 1100,
                 Rarity = uncommon,
@@ -631,6 +696,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish shanghaiCrab = new Fish
             {
+                FishID = 62,
                 FishName = "Shanghai Crab",
                 Price = 2000,
                 Rarity = rare,
@@ -640,6 +706,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish shark = new Fish
             {
+                FishID = 63,
                 FishName = "Shark",
                 Price = 15000,
                 Rarity = veryRare,
@@ -649,6 +716,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish softshelledTurtle = new Fish
             {
+                FishID = 64,
                 FishName = "Soft-shelled Turtle",
                 Price = 3750,
                 Rarity = rare,
@@ -658,6 +726,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish squid = new Fish
             {
+                FishID = 65,
                 FishName = "Squid",
                 Price = 400,
                 Rarity = uncommon,
@@ -667,6 +736,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish surgeonFish = new Fish
             {
+                FishID = 66,
                 FishName = "Surgeon Fish",
                 Price = 1000,
                 Rarity = uncommon,
@@ -676,6 +746,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish sweetfish = new Fish
             {
+                FishID = 67,
                 FishName = "Sweetfish",
                 Price = 900,
                 Rarity = fairlyCommon,
@@ -685,6 +756,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish tadpole = new Fish
             {
+                FishID = 68,
                 FishName = "Tadpole",
                 Price = 100,
                 Rarity = fairlyCommon,
@@ -694,6 +766,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish tuna = new Fish
             {
+                FishID = 69,
                 FishName = "Tuna",
                 Price = 7000,
                 Rarity = rare,
@@ -703,6 +776,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish whaleShark = new Fish
             {
+                FishID = 70,
                 FishName = "Whale Shark",
                 Price = 13000,
                 Rarity = veryRare,
@@ -712,6 +786,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish yellowPerch = new Fish
             {
+                FishID = 71,
                 FishName = "Yellow Perch",
                 Price = 240,
                 Rarity = fairlyCommon,
@@ -721,6 +796,7 @@ namespace NewDayNewLeaf.Migrations
 			
 			Fish zebraTurkeyfish = new Fish
             {
+                FishID = 72,
                 FishName = "Zebra Turkeyfish",
                 Price = 400,
                 Rarity = fairlyCommon,
