@@ -29,10 +29,10 @@
                 var location = "";
                 $.each(FishTimes, function (i, time) {
                     if (i = 1) {
-                        location = time.FishLocation.LocationName;
+                        location = time.LocationName;
                     }
                     else {
-                        location = location + ", " + time.FishLocation.LocationName;
+                        location = location + ", " + time.LocationName;
                     }
                 });
                 fishLocation.appendChild(document.createTextNode("Fish Location(s): "));
@@ -47,13 +47,13 @@
 
                 var fishRarity = document.createElement("div");
                 fishRarity.className = "fishRarityDiv";
-                rarity = fish.Rarity.Rarity;
+                rarity = fish.Rarity;
                 fishRarity.appendChild(document.createTextNode("Rarity: "));
                 fishRarity.appendChild(document.createTextNode(rarity));
 
                 var shadowSize = document.createElement("div");
                 shadowSize.className = "fishSizeDiv";
-                size = fish.ShadowSize.ShadowSizeText;
+                size = fish.ShadowSize;
                 shadowSize.appendChild(document.createTextNode("Shadow Size: "));
                 shadowSize.appendChild(document.createTextNode(size));
 

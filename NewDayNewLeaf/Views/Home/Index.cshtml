@@ -51,11 +51,11 @@
                     var FishTimes = fish.FishTimes.$values;
                     var location = "";
                     $.each(FishTimes, function (i, time) {
-                        if (i = 1) {
-                            location = time.FishLocation.LocationName;
+                        if (i == 0) {
+                            location = time.LocationName;
                         }
                         else {
-                            location = location + ", " + time.FishLocation.LocationName;
+                            location = location + ", " + time.LocationName;
                         }
                     });
                     fishLocation.appendChild(document.createTextNode(location));
@@ -68,12 +68,12 @@
 
                     var fishRarity = document.createElement("td");
                     fishRarity.className = "fishRarityCol";
-                    rarity = fish.Rarity.Rarity;
+                    rarity = fish.Rarity;
                     fishRarity.appendChild(document.createTextNode(rarity));
 
                     var shadowSize = document.createElement("td");
                     shadowSize.className = "fishSizeCol";
-                    size = fish.ShadowSize.ShadowSizeText;
+                    size = fish.ShadowSize;
                     shadowSize.appendChild(document.createTextNode(size));
 
                     fishRow.appendChild(inspectRow);

@@ -11,7 +11,7 @@ namespace NewDayNewLeaf.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201305302323427_Initial"; }
+            get { return "201306030059101_Initial"; }
         }
         
         string IMigrationMetadata.Source
