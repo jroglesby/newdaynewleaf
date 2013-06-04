@@ -15,6 +15,9 @@ namespace NewDayNewLeaf.Models
         public int Price { get; set; }
         public string CheesySaying { get; set; }
         public string BlathersInfo { get; set; }
+        public int FishRarityID { get; set; }
+        public int ShadowSizeID { get; set; }
+
 
         public FishRarity Rarity { get; set; }
         public ShadowSize ShadowSize { get; set; }
@@ -29,6 +32,8 @@ namespace NewDayNewLeaf.Models
         public DateTime TimeBegin { get; set; }
         public DateTime TimeEnd { get; set; }
         public string AdditionalInformation { get; set; }
+        public int FishID { get; set; }
+        public int FishLocationID { get; set; }
 
         
         public Fish Fish { get; set; }

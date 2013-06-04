@@ -29,31 +29,31 @@ namespace NewDayNewLeaf.Migrations
             // );
             //
 
-            ShadowSize verySmall = new ShadowSize { ShadowSizeID = 1, ShadowSizeText = "Very Small" };
-            ShadowSize small = new ShadowSize { ShadowSizeID = 2, ShadowSizeText = "Small" };
-            ShadowSize medium = new ShadowSize { ShadowSizeID = 3, ShadowSizeText = "Medium" };
-            ShadowSize large = new ShadowSize { ShadowSizeID = 4, ShadowSizeText = "Large" };
-            ShadowSize veryLarge = new ShadowSize { ShadowSizeID = 5, ShadowSizeText = "Very Large" };
-            ShadowSize huge = new ShadowSize { ShadowSizeID = 6, ShadowSizeText = "Huge" };
-            ShadowSize hugeWithFin = new ShadowSize { ShadowSizeID = 7, ShadowSizeText = "Huge With Fin" };
+            ShadowSize verySmall = new ShadowSize { ShadowSizeText = "Very Small" };
+            ShadowSize small = new ShadowSize { ShadowSizeText = "Small" };
+            ShadowSize medium = new ShadowSize { ShadowSizeText = "Medium" };
+            ShadowSize large = new ShadowSize { ShadowSizeText = "Large" };
+            ShadowSize veryLarge = new ShadowSize { ShadowSizeText = "Very Large" };
+            ShadowSize huge = new ShadowSize { ShadowSizeText = "Huge" };
+            ShadowSize hugeWithFin = new ShadowSize { ShadowSizeText = "Huge With Fin" };
 
-            FishRarity veryCommon = new FishRarity { FishRarityID = 1, Rarity = "Very Common" };
-            FishRarity fairlyCommon = new FishRarity { FishRarityID = 2, Rarity = "Fairly Common" };
-            FishRarity common = new FishRarity { FishRarityID = 3, Rarity = "Common" };
-            FishRarity uncommon = new FishRarity { FishRarityID = 4, Rarity = "Uncommon" };
-            FishRarity rare = new FishRarity { FishRarityID = 5, Rarity = "Rare" };
-            FishRarity veryRare = new FishRarity { FishRarityID = 6, Rarity = "Very Rare" };
+            FishRarity veryCommon = new FishRarity { Rarity = "Very Common" };
+            FishRarity fairlyCommon = new FishRarity { Rarity = "Fairly Common" };
+            FishRarity common = new FishRarity { Rarity = "Common" };
+            FishRarity uncommon = new FishRarity { Rarity = "Uncommon" };
+            FishRarity rare = new FishRarity { Rarity = "Rare" };
+            FishRarity veryRare = new FishRarity { Rarity = "Very Rare" };
 
-            FishLocation ocean = new FishLocation { FishLocationID = 1, LocationName = "Ocean" };
-            FishLocation river = new FishLocation { FishLocationID = 2, LocationName = "River" };
-            FishLocation pond = new FishLocation { FishLocationID = 3, LocationName = "Pond" };
-            FishLocation tropicalIsland = new FishLocation { FishLocationID = 4, LocationName = "Tropical Island" };
-            FishLocation waterfall = new FishLocation { FishLocationID = 5, LocationName = "Waterfall" };
-            FishLocation riverPond = new FishLocation { FishLocationID = 6, LocationName = "River Pond" };
-            FishLocation riverMouth = new FishLocation { FishLocationID = 7, LocationName = "River Mouth" };
+            FishLocation ocean = new FishLocation { LocationName = "Ocean" };
+            FishLocation river = new FishLocation { LocationName = "River" };
+            FishLocation pond = new FishLocation { LocationName = "Pond" };
+            FishLocation tropicalIsland = new FishLocation { LocationName = "Tropical Island" };
+            FishLocation waterfall = new FishLocation { LocationName = "Waterfall" };
+            FishLocation riverPond = new FishLocation { LocationName = "River Pond" };
+            FishLocation riverMouth = new FishLocation { LocationName = "River Mouth" };
 
             context.ShadowSize.AddOrUpdate(
-                ss => ss.ShadowSizeID,
+                ss => ss.ShadowSizeText,
                 verySmall,
                 small,
                 medium,
@@ -63,18 +63,22 @@ namespace NewDayNewLeaf.Migrations
                 hugeWithFin
             );
 
+            context.SaveChanges();
+
             context.FishRarity.AddOrUpdate(
-                fr => fr.FishRarityID,
+                fr => fr.Rarity,
                 veryCommon,
-				fairlyCommon,
+                fairlyCommon,
                 common,
                 uncommon,
                 rare,
                 veryRare
             );
 
+            context.SaveChanges();
+
             context.FishLocations.AddOrUpdate(
-                fl => fl.FishLocationID,
+                fl => fl.LocationName,
                 ocean,
                 river,
                 pond,
@@ -84,818 +88,740 @@ namespace NewDayNewLeaf.Migrations
                 riverMouth
             );
 
+            context.SaveChanges();
+
             Fish seaBass = new Fish
             {
-                FishID = 1,
                 FishName = "Sea Bass",
                 Price = 200,
-                Rarity = veryCommon,
-                ShadowSize = veryLarge,
+                FishRarityID = veryCommon.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "I caught a sea bass! Oh no, not again!"
             };
 
             Fish stringfish = new Fish
             {
-                FishID = 2,
                 FishName = "Stringfish",
                 Price = 15000,
-                Rarity = veryRare,
-                ShadowSize = huge,
+                FishRarityID = veryRare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = "OH MY GOSH! I caught a stringfish! This is AWESOME!"
             };
 			
 			Fish bitterling = new Fish
             {
-                FishID = 3,
                 FishName = "Bitterling",
                 Price = 900,
-                Rarity = fairlyCommon,
-                ShadowSize = verySmall,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish angelfish = new Fish
             {
-                FishID = 4,
                 FishName = "Angelfish",
                 Price = 3000,
-                Rarity = rare,
-                ShadowSize = small,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish arapaima = new Fish
             {
-                FishID = 5,
                 FishName = "Arapaima",
                 Price = 10000,
-                Rarity = rare,
-                ShadowSize = huge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish arowana = new Fish
             {
-                FishID = 6,
                 FishName = "Arowana",
                 Price = 10000,
-                Rarity = rare,
-                ShadowSize = large,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish barbelSteed = new Fish
             {
-                FishID = 7,
                 FishName = "Barbel Steed",
                 Price = 200,
-                Rarity = rare,
-                ShadowSize = medium,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish barredKnife = new Fish
             {
-                FishID = 8,
                 FishName = "Barred Knifejaw",
                 Price = 5000,
-                Rarity = rare,
-                ShadowSize = medium,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish blackBass = new Fish
             {
-                FishID = 9,
                 FishName = "Black Bass",
                 Price = 300,
-                Rarity = common,
-                ShadowSize = medium,
+                FishRarityID = common.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish blowFish = new Fish
             {
-                FishID = 10,
                 FishName = "Blow Fish",
                 Price = 125,
-                Rarity = uncommon,
-                ShadowSize = medium,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish blueMarlin = new Fish
             {
-                FishID = 11,
                 FishName = "Blue Marlin",
                 Price = 10000,
-                Rarity = rare,
-                ShadowSize = huge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish bluegill = new Fish
             {
-                FishID = 12,
                 FishName = "Bluegill",
                 Price = 120,
-                Rarity = uncommon,
-                ShadowSize = small,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish butterflyFish = new Fish
             {
-                FishID = 13,
                 FishName = "Butterfly Fish",
                 Price = 1000,
-                Rarity = uncommon,
-                ShadowSize = small,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish carp = new Fish
             {
-                FishID = 14,
                 FishName = "Carp",
                 Price = 300,
-                Rarity = fairlyCommon,
-                ShadowSize = large,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 		
 			Fish catfish = new Fish
             {
-                FishID = 15,
                 FishName = "Catfish",
                 Price = 800,
-                Rarity = fairlyCommon,
-                ShadowSize = large,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish charFish = new Fish
             {
-                FishID = 16,
                 FishName = "Char",
                 Price = 3800,
-                Rarity = uncommon,
-                ShadowSize = medium,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish cherrySalmon = new Fish
             {
-                FishID = 17,
                 FishName = "Cherry Salmon",
                 Price = 1000,
-                Rarity = uncommon,
-                ShadowSize = small,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish clownfish = new Fish
             {
-                FishID = 18,
                 FishName = "Clownfish",
                 Price = 650,
-                Rarity = uncommon,
-                ShadowSize = verySmall,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish coelacanth = new Fish
             {
-                FishID = 19,
                 FishName = "Coelacanth",
                 Price = 15000,
-                Rarity = veryRare,
-                ShadowSize = huge,
+                FishRarityID = veryRare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish crawfish = new Fish
             {
-                FishID = 20,
                 FishName = "Crawfish",
                 Price = 200,
-                Rarity = common,
-                ShadowSize = small,
+                FishRarityID = common.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish crucianCarp = new Fish
             {
-                FishID = 21,
                 FishName = "Crucian Carp",
                 Price = 120,
-                Rarity = fairlyCommon,
-                ShadowSize = small,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish dab = new Fish
             {
-                FishID = 22,
                 FishName = "Dab",
                 Price = 300,
-                Rarity = fairlyCommon,
-                ShadowSize = medium,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish dace = new Fish
             {
-                FishID = 23,
                 FishName = "Dace",
                 Price = 200,
-                Rarity = fairlyCommon,
-                ShadowSize = medium,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish dorado = new Fish
             {
-                FishID = 24,
                 FishName = "Dorado",
                 Price = 15000,
-                Rarity = veryRare,
-                ShadowSize = veryLarge,
+                FishRarityID = veryRare.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish eel = new Fish
             {
-                FishID = 25,
                 FishName = "Eel",
                 Price = 2000,
-                Rarity = fairlyCommon,
-                ShadowSize = large,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish footballFish = new Fish
             {
-                FishID = 26,
                 FishName = "Football Fish",
                 Price = 2500,
-                Rarity = uncommon,
-                ShadowSize = large,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish freshwaterGoby = new Fish
             {
-                FishID = 27,
                 FishName = "Freshwater Goby",
                 Price = 300,
-                Rarity = rare,
-                ShadowSize = small,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish frog = new Fish
             {
-                FishID = 28,
                 FishName = "Frog",
                 Price = 120,
-                Rarity = veryCommon,
-                ShadowSize = small,
+                FishRarityID = veryCommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish gar = new Fish
             {
-                FishID = 29,
                 FishName = "Gar",
                 Price = 6000,
-                Rarity = rare,
-                ShadowSize = veryLarge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish giantSnakehead = new Fish
             {
-                FishID = 30,
                 FishName = "Giant Snakehead",
                 Price = 5500,
-                Rarity = uncommon,
-                ShadowSize = veryLarge,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish giantTrrevally = new Fish
             {
-                FishID = 31,
                 FishName = "Giant Trrevally",
                 Price = 4500,
-                Rarity = rare,
-                ShadowSize = veryLarge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish goldfish = new Fish
             {
-                FishID = 32,
                 FishName = "Goldfish",
                 Price = 1300,
-                Rarity = rare,
-                ShadowSize = verySmall,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish guppy = new Fish
             {
-                FishID = 33,
                 FishName = "Guppy",
                 Price = 1300,
-                Rarity = rare,
-                ShadowSize = verySmall,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish hammerhead = new Fish
             {
-                FishID = 34,
                 FishName = "Hammerhead Shark",
                 Price = 8000,
-                Rarity = rare,
-                ShadowSize = hugeWithFin,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =hugeWithFin.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish horseMackerel = new Fish
             {
-                FishID = 35,
                 FishName = "Horse Mackerel",
                 Price = 150,
-                Rarity = common,
-                ShadowSize = small,
+                FishRarityID = common.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish killifish = new Fish
             {
-                FishID = 36,
                 FishName = "Killifish",
                 Price = 300,
-                Rarity = uncommon,
-                ShadowSize = verySmall,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish kingSalmon = new Fish
             {
-                FishID = 37,
                 FishName = "King Salmon",
                 Price = 1800,
-                Rarity = uncommon,
-                ShadowSize = huge,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish koi = new Fish
             {
-                FishID = 38,
                 FishName = "Koi",
                 Price = 4000,
-                Rarity = rare,
-                ShadowSize = large,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish loach = new Fish
             {
-                FishID = 39,
                 FishName = "Loach",
                 Price = 300,
-                Rarity = common,
-                ShadowSize = small,
+                FishRarityID = common.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish morayEel = new Fish
             {
-                FishID = 40,
                 FishName = "Moray Eel",
                 Price = 2000,
-                Rarity = uncommon,
-                ShadowSize = veryLarge,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish napoleonfish = new Fish
             {
-                FishID = 41,
                 FishName = "Napoleonfish",
                 Price = 10000,
-                Rarity = rare,
-                ShadowSize = huge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish neonTetra = new Fish
             {
-                FishID = 42,
                 FishName = "Neon Tetra",
                 Price = 500,
-                Rarity = uncommon,
-                ShadowSize = verySmall,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish nibbleFish = new Fish
             {
-                FishID = 43,
                 FishName = "Nibble Fish",
                 Price = 1500,
-                Rarity = uncommon,
-                ShadowSize = small,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish oarFish = new Fish
             {
-                FishID = 44,
                 FishName = "Oar Fish",
                 Price = 9000,
-                Rarity = veryRare,
-                ShadowSize = veryLarge,
+                FishRarityID = veryRare.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish oceanSunfish = new Fish
             {
-                FishID = 45,
                 FishName = "Ocean Sunfish",
                 Price = 4000,
-                Rarity = uncommon,
-                ShadowSize = hugeWithFin,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =hugeWithFin.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish oliveFlounder = new Fish
             {
-                FishID = 46,
                 FishName = "Olive Flounder",
                 Price = 800,
-                Rarity = uncommon,
-                ShadowSize = large,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish paleChub = new Fish
             {
-                FishID = 47,
                 FishName = "Pale Chub",
                 Price = 200,
-                Rarity = uncommon,
-                ShadowSize = verySmall,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish pike = new Fish
             {
-                FishID = 48,
                 FishName = "Pike",
                 Price = 1800,
-                Rarity = uncommon,
-                ShadowSize = veryLarge,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish piranha = new Fish
             {
-                FishID = 49,
                 FishName = "Piranha",
                 Price = 2500,
-                Rarity = rare,
-                ShadowSize = small,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish pondSmelt = new Fish
             {
-                FishID = 50,
                 FishName = "Pond Smelt",
                 Price = 300,
-                Rarity = common,
-                ShadowSize = small,
+                FishRarityID = common.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = "unknown"
             };
 			
 			Fish popeyedGoldfish = new Fish
             {
-                FishID = 51,
                 FishName = "Pop-eyed Goldfish",
                 Price = 1300,
-                Rarity = rare,
-                ShadowSize = verySmall,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = "I got a pop-eyed goldfish! It should have eaten its spinach!"
             };
 			
 			Fish pufferFish = new Fish
             {
-                FishID = 52,
                 FishName = "Puffer Fish",
                 Price = 240,
-                Rarity = uncommon,
-                ShadowSize = medium,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish rainbowTrout = new Fish
             {
-                FishID = 53,
                 FishName = "Rainbow Trout",
                 Price = 800,
-                Rarity = fairlyCommon,
-                ShadowSize = large,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish ray = new Fish
             {
-                FishID = 54,
                 FishName = "Ray",
                 Price = 3000,
-                Rarity = rare,
-                ShadowSize = huge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish redSnapper = new Fish
             {
-                FishID = 55,
                 FishName = "Red Snapper",
                 Price = 3000,
-                Rarity = uncommon,
-                ShadowSize = medium,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish ribbonEel = new Fish
             {
-                FishID = 56,
                 FishName = "Ribbon Eel",
                 Price = 600,
-                Rarity = uncommon,
-                ShadowSize = veryLarge,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =veryLarge.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish saddledBichir = new Fish
             {
-                FishID = 57,
                 FishName = "Saddled Bichir",
                 Price = 4000,
-                Rarity = rare,
-                ShadowSize = large,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish salmon = new Fish
             {
-                FishID = 58,
                 FishName = "Salmon",
                 Price = 700,
-                Rarity = common,
-                ShadowSize = large,
+                FishRarityID = common.FishRarityID,
+                ShadowSizeID =large.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish sawShark = new Fish
             {
-                FishID = 59,
                 FishName = "Saw Shark",
                 Price = 12000,
-                Rarity = veryRare,
-                ShadowSize = hugeWithFin,
+                FishRarityID = veryRare.FishRarityID,
+                ShadowSizeID =hugeWithFin.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish seaButterfly = new Fish
             {
-                FishID = 60,
                 FishName = "SeaButterfly",
                 Price = 1000,
-                Rarity = uncommon,
-                ShadowSize = verySmall,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish seahorse = new Fish
             {
-                FishID = 61,
                 FishName = "Seahorse",
                 Price = 1100,
-                Rarity = uncommon,
-                ShadowSize = verySmall,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish shanghaiCrab = new Fish
             {
-                FishID = 62,
                 FishName = "Shanghai Crab",
                 Price = 2000,
-                Rarity = rare,
-                ShadowSize = small,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish shark = new Fish
             {
-                FishID = 63,
                 FishName = "Shark",
                 Price = 15000,
-                Rarity = veryRare,
-                ShadowSize = hugeWithFin,
+                FishRarityID = veryRare.FishRarityID,
+                ShadowSizeID =hugeWithFin.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish softshelledTurtle = new Fish
             {
-                FishID = 64,
                 FishName = "Soft-shelled Turtle",
                 Price = 3750,
-                Rarity = rare,
-                ShadowSize = huge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish squid = new Fish
             {
-                FishID = 65,
                 FishName = "Squid",
                 Price = 400,
-                Rarity = uncommon,
-                ShadowSize = medium,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish surgeonFish = new Fish
             {
-                FishID = 66,
                 FishName = "Surgeon Fish",
                 Price = 1000,
-                Rarity = uncommon,
-                ShadowSize = small,
+                FishRarityID = uncommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish sweetfish = new Fish
             {
-                FishID = 67,
                 FishName = "Sweetfish",
                 Price = 900,
-                Rarity = fairlyCommon,
-                ShadowSize = medium,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish tadpole = new Fish
             {
-                FishID = 68,
                 FishName = "Tadpole",
                 Price = 100,
-                Rarity = fairlyCommon,
-                ShadowSize = verySmall,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =verySmall.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish tuna = new Fish
             {
-                FishID = 69,
                 FishName = "Tuna",
                 Price = 7000,
-                Rarity = rare,
-                ShadowSize = huge,
+                FishRarityID = rare.FishRarityID,
+                ShadowSizeID =huge.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish whaleShark = new Fish
             {
-                FishID = 70,
                 FishName = "Whale Shark",
                 Price = 13000,
-                Rarity = veryRare,
-                ShadowSize = hugeWithFin,
+                FishRarityID = veryRare.FishRarityID,
+                ShadowSizeID =hugeWithFin.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish yellowPerch = new Fish
             {
-                FishID = 71,
                 FishName = "Yellow Perch",
                 Price = 240,
-                Rarity = fairlyCommon,
-                ShadowSize = small,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =small.ShadowSizeID,
                 CheesySaying = ""
             };
 			
 			Fish zebraTurkeyfish = new Fish
             {
-                FishID = 72,
                 FishName = "Zebra Turkeyfish",
                 Price = 400,
-                Rarity = fairlyCommon,
-                ShadowSize = medium,
+                FishRarityID = fairlyCommon.FishRarityID,
+                ShadowSizeID =medium.ShadowSizeID,
                 CheesySaying = ""
             };
-			
+
             context.Fishes.AddOrUpdate(
-                f => f.FishID,
+                f => f.FishName,
                 seaBass,
                 stringfish,
-				bitterling,
-				angelfish,
-				arapaima,
-				arowana,
-				barbelSteed,
-				barredKnife,
-				blackBass,
-				blowFish,
-				blueMarlin,
-				bluegill,
-				butterflyFish,
-				carp,
-				catfish,
-				charFish,
-				cherrySalmon,
-				clownfish,
-				coelacanth,
-				crawfish,
-				crucianCarp,
-				dab,
-				dace,
-				dorado,
-				eel,
-				footballFish,
-				freshwaterGoby,
-				frog,
-				gar,
-				giantSnakehead,
-				giantTrrevally,
-				goldfish,
-				guppy,
-				hammerhead,
-				horseMackerel,
-				killifish,
-				kingSalmon,
-				koi,
-				loach,
-				morayEel,
-				napoleonfish,
-				neonTetra,
-				nibbleFish,
-				oarFish,
-				oceanSunfish,
-				oliveFlounder,
-				paleChub,
-				pike,
-				piranha,
-				pondSmelt,
-				popeyedGoldfish,
-				pufferFish,
-				rainbowTrout,
-				ray,
-				redSnapper,
-				ribbonEel,
-				saddledBichir,
-				salmon,
-				sawShark,
-				seaButterfly,
-				seahorse,
-				shanghaiCrab,
-				shark,
-				softshelledTurtle,
-				squid,
-				surgeonFish,
-				sweetfish,
-				tadpole,
-				tuna,
-				whaleShark,
-				yellowPerch,
-				zebraTurkeyfish
+                bitterling,
+                angelfish,
+                arapaima,
+                arowana,
+                barbelSteed,
+                barredKnife,
+                blackBass,
+                blowFish,
+                blueMarlin,
+                bluegill,
+                butterflyFish,
+                carp,
+                catfish,
+                charFish,
+                cherrySalmon,
+                clownfish,
+                coelacanth,
+                crawfish,
+                crucianCarp,
+                dab,
+                dace,
+                dorado,
+                eel,
+                footballFish,
+                freshwaterGoby,
+                frog,
+                gar,
+                giantSnakehead,
+                giantTrrevally,
+                goldfish,
+                guppy,
+                hammerhead,
+                horseMackerel,
+                killifish,
+                kingSalmon,
+                koi,
+                loach,
+                morayEel,
+                napoleonfish,
+                neonTetra,
+                nibbleFish,
+                oarFish,
+                oceanSunfish,
+                oliveFlounder,
+                paleChub,
+                pike,
+                piranha,
+                pondSmelt,
+                popeyedGoldfish,
+                pufferFish,
+                rainbowTrout,
+                ray,
+                redSnapper,
+                ribbonEel,
+                saddledBichir,
+                salmon,
+                sawShark,
+                seaButterfly,
+                seahorse,
+                shanghaiCrab,
+                shark,
+                softshelledTurtle,
+                squid,
+                surgeonFish,
+                sweetfish,
+                tadpole,
+                tuna,
+                whaleShark,
+                yellowPerch,
+                zebraTurkeyfish
             );
 
+            context.SaveChanges();
+
             context.FishTimes.AddOrUpdate(
+                ft => new { ft.FishID, ft.DateBegin, ft.DateEnd, ft.TimeBegin, ft.TimeEnd, ft.FishLocationID},
                 new FishTime
                 {
-                    Fish = seaBass,
-                    FishLocation = ocean,
-                    DateBegin = new DateTime(2000, 1, 1),
-                    DateEnd = new DateTime(2000, 12, 31),
-                    TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
-                    TimeEnd = new DateTime(2000, 1, 1, 23, 59, 59),
-                    AdditionalInformation = ""
-                },
-				
-				new FishTime
-                {
-                    Fish = seaBass,
-                    FishLocation = tropicalIsland,
+                    FishID = seaBass.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -905,8 +831,19 @@ namespace NewDayNewLeaf.Migrations
 				
                 new FishTime
                 {
-                    Fish = stringfish,
-                    FishLocation = river,
+                    FishID = seaBass.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
+                    DateBegin = new DateTime(2000, 1, 1),
+                    DateEnd = new DateTime(2000, 12, 31),
+                    TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
+                    TimeEnd = new DateTime(2000, 1, 1, 23, 59, 59),
+                    AdditionalInformation = ""
+                },
+				
+                new FishTime
+                {
+                    FishID = stringfish.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 12, 1),
                     DateEnd = new DateTime(2000, 2, 29),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -914,10 +851,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = bitterling,
-                    FishLocation = river,
+                    FishID = bitterling.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 11, 1),
                     DateEnd = new DateTime(2000, 2, 29),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -925,10 +862,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = angelfish,
-                    FishLocation = river,
+                    FishID = angelfish.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 5, 1),
                     DateEnd = new DateTime(2000, 10, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -936,10 +873,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = arapaima,
-                    FishLocation = river,
+                    FishID = arapaima.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 7, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -947,10 +884,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = arowana,
-                    FishLocation = river,
+                    FishID = arowana.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 15),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -958,10 +895,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = barbelSteed,
-                    FishLocation = river,
+                    FishID = barbelSteed.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -969,10 +906,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = barredKnife,
-                    FishLocation = ocean,
+                    FishID = barredKnife.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -980,10 +917,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = barredKnife,
-                    FishLocation = tropicalIsland,
+                    FishID = barredKnife.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -991,10 +928,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = blackBass,
-                    FishLocation = river,
+                    FishID = blackBass.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1002,10 +939,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = blowFish,
-                    FishLocation = ocean,
+                    FishID = blowFish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 11, 1),
                     DateEnd = new DateTime(2000, 2, 29),
                     TimeBegin = new DateTime(2000, 1, 1, 21, 0, 0),
@@ -1013,10 +950,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = blueMarlin,
-                    FishLocation = ocean,
+                    FishID = blueMarlin.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 7, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1024,10 +961,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = blueMarlin,
-                    FishLocation = tropicalIsland,
+                    FishID = blueMarlin.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1035,10 +972,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = bluegill,
-                    FishLocation = river,
+                    FishID = bluegill.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1046,10 +983,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = butterflyFish,
-                    FishLocation = ocean,
+                    FishID = butterflyFish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1057,10 +994,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = carp,
-                    FishLocation = riverPond,
+                    FishID = carp.FishID,
+                    FishLocationID =riverPond.FishLocationID,
                     DateBegin = new DateTime(2000, 5, 1),
                     DateEnd = new DateTime(2000, 10, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1068,10 +1005,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = catfish,
-                    FishLocation = riverPond,
+                    FishID = catfish.FishID,
+                    FishLocationID =riverPond.FishLocationID,
                     DateBegin = new DateTime(2000, 5, 1),
                     DateEnd = new DateTime(2000, 10, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1079,10 +1016,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = charFish,
-                    FishLocation = waterfall,
+                    FishID = charFish.FishID,
+                    FishLocationID =waterfall.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 6, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1090,10 +1027,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = charFish,
-                    FishLocation = waterfall,
+                    FishID = charFish.FishID,
+                    FishLocationID =waterfall.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 6, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1101,10 +1038,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = charFish,
-                    FishLocation = waterfall,
+                    FishID = charFish.FishID,
+                    FishLocationID =waterfall.FishLocationID,
                     DateBegin = new DateTime(2000, 9, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1112,10 +1049,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = cherrySalmon,
-                    FishLocation = river,
+                    FishID = cherrySalmon.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 6, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1123,10 +1060,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = cherrySalmon,
-                    FishLocation = river,
+                    FishID = cherrySalmon.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 6, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1134,10 +1071,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = cherrySalmon,
-                    FishLocation = river,
+                    FishID = cherrySalmon.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 9, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1145,10 +1082,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = clownfish,
-                    FishLocation = ocean,
+                    FishID = clownfish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1156,10 +1093,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = clownfish,
-                    FishLocation = tropicalIsland,
+                    FishID = clownfish.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1167,10 +1104,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = coelacanth,
-                    FishLocation = ocean,
+                    FishID = coelacanth.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1178,10 +1115,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Only when raining or snowing."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = crawfish,
-                    FishLocation = pond,
+                    FishID = crawfish.FishID,
+                    FishLocationID =pond.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 9, 15),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1189,10 +1126,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = crucianCarp,
-                    FishLocation = river,
+                    FishID = crucianCarp.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1200,10 +1137,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = dab,
-                    FishLocation = ocean,
+                    FishID = dab.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 10, 1),
                     DateEnd = new DateTime(2000, 4, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1211,10 +1148,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = dace,
-                    FishLocation = river,
+                    FishID = dace.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1222,10 +1159,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = dorado,
-                    FishLocation = river,
+                    FishID = dorado.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1233,10 +1170,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = eel,
-                    FishLocation = river,
+                    FishID = eel.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 15),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1244,10 +1181,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = footballFish,
-                    FishLocation = ocean,
+                    FishID = footballFish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 11, 1),
                     DateEnd = new DateTime(2000, 3, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1255,10 +1192,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = freshwaterGoby,
-                    FishLocation = river,
+                    FishID = freshwaterGoby.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1266,10 +1203,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = frog,
-                    FishLocation = pond,
+                    FishID = frog.FishID,
+                    FishLocationID =pond.FishLocationID,
                     DateBegin = new DateTime(2000, 5, 1),
                     DateEnd = new DateTime(2000, 8, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1277,10 +1214,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = gar,
-                    FishLocation = riverPond,
+                    FishID = gar.FishID,
+                    FishLocationID =riverPond.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1288,10 +1225,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = giantSnakehead,
-                    FishLocation = riverPond,
+                    FishID = giantSnakehead.FishID,
+                    FishLocationID =riverPond.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 8, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1299,21 +1236,21 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = giantTrrevally,
-                    FishLocation = tropicalIsland,
+                    FishID = giantTrrevally.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
                     TimeEnd = new DateTime(2000, 1, 1, 0, 0, 0),
-                    AdditionalInformation = "No information at this time."
+                    AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = goldfish,
-                    FishLocation = river,
+                    FishID = goldfish.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1321,10 +1258,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = guppy,
-                    FishLocation = river,
+                    FishID = guppy.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1332,10 +1269,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = hammerhead,
-                    FishLocation = ocean,
+                    FishID = hammerhead.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1343,10 +1280,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = hammerhead,
-                    FishLocation = tropicalIsland,
+                    FishID = hammerhead.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1354,10 +1291,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = horseMackerel,
-                    FishLocation = ocean,
+                    FishID = horseMackerel.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1365,10 +1302,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = horseMackerel,
-                    FishLocation = tropicalIsland,
+                    FishID = horseMackerel.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1376,10 +1313,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = killifish,
-                    FishLocation = pond,
+                    FishID = killifish.FishID,
+                    FishLocationID =pond.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 8, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1387,10 +1324,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = kingSalmon,
-                    FishLocation = river,
+                    FishID = kingSalmon.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 9, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1398,10 +1335,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Also found at the River's Mouth."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = koi,
-                    FishLocation = river,
+                    FishID = koi.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1409,10 +1346,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = loach,
-                    FishLocation = river,
+                    FishID = loach.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 5, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1420,10 +1357,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = morayEel,
-                    FishLocation = ocean,
+                    FishID = morayEel.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 8, 1),
                     DateEnd = new DateTime(2000, 10, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1431,10 +1368,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = morayEel,
-                    FishLocation = tropicalIsland,
+                    FishID = morayEel.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1442,10 +1379,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = napoleonfish,
-                    FishLocation = ocean,
+                    FishID = napoleonfish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 7, 1),
                     DateEnd = new DateTime(2000, 8, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1453,10 +1390,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = napoleonfish,
-                    FishLocation = tropicalIsland,
+                    FishID = napoleonfish.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1464,10 +1401,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = neonTetra,
-                    FishLocation = river,
+                    FishID = neonTetra.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1475,10 +1412,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = nibbleFish,
-                    FishLocation = river,
+                    FishID = nibbleFish.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 5, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1486,10 +1423,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = oarFish,
-                    FishLocation = ocean,
+                    FishID = oarFish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 12, 1),
                     DateEnd = new DateTime(2000, 5, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1497,10 +1434,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = oceanSunfish,
-                    FishLocation = ocean,
+                    FishID = oceanSunfish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1508,10 +1445,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = oceanSunfish,
-                    FishLocation = tropicalIsland,
+                    FishID = oceanSunfish.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1519,10 +1456,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = oliveFlounder,
-                    FishLocation = ocean,
+                    FishID = oliveFlounder.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1530,10 +1467,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = oliveFlounder,
-                    FishLocation = tropicalIsland,
+                    FishID = oliveFlounder.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1541,10 +1478,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = paleChub,
-                    FishLocation = river,
+                    FishID = paleChub.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1552,10 +1489,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = pike,
-                    FishLocation = river,
+                    FishID = pike.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 9, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1563,10 +1500,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = piranha,
-                    FishLocation = river,
+                    FishID = piranha.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 15),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1574,10 +1511,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = piranha,
-                    FishLocation = river,
+                    FishID = piranha.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 15),
                     TimeBegin = new DateTime(2000, 1, 1, 21, 0, 0),
@@ -1585,10 +1522,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = pondSmelt,
-                    FishLocation = river,
+                    FishID = pondSmelt.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1596,10 +1533,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = popeyedGoldfish,
-                    FishLocation = river,
+                    FishID = popeyedGoldfish.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 9, 0, 0),
@@ -1607,10 +1544,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = pufferFish,
-                    FishLocation = ocean,
+                    FishID = pufferFish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 7, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1618,10 +1555,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = pufferFish,
-                    FishLocation = tropicalIsland,
+                    FishID = pufferFish.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1629,10 +1566,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = rainbowTrout,
-                    FishLocation = river,
+                    FishID = rainbowTrout.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 6, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1640,10 +1577,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = rainbowTrout,
-                    FishLocation = river,
+                    FishID = rainbowTrout.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 6, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1651,10 +1588,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = rainbowTrout,
-                    FishLocation = river,
+                    FishID = rainbowTrout.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 9, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1662,10 +1599,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = ray,
-                    FishLocation = ocean,
+                    FishID = ray.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 8, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 4, 0, 0),
@@ -1673,10 +1610,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = ray,
-                    FishLocation = tropicalIsland,
+                    FishID = ray.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1684,10 +1621,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = redSnapper,
-                    FishLocation = ocean,
+                    FishID = redSnapper.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1695,10 +1632,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = redSnapper,
-                    FishLocation = tropicalIsland,
+                    FishID = redSnapper.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1706,10 +1643,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = ribbonEel,
-                    FishLocation = tropicalIsland,
+                    FishID = ribbonEel.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1717,10 +1654,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = saddledBichir,
-                    FishLocation = river,
+                    FishID = saddledBichir.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 21, 0, 0),
@@ -1728,21 +1665,21 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = salmon,
-                    FishLocation = river,
+                    FishID = salmon.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 9, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
                     TimeEnd = new DateTime(2000, 1, 1, 23, 59, 59),
-                    AdditionalInformation = "Also found at the river's mouth."
+                    AdditionalInformation = "Also found at the river.FishLocationID's mouth."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = sawShark,
-                    FishLocation = ocean,
+                    FishID = sawShark.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1750,10 +1687,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = sawShark,
-                    FishLocation = tropicalIsland,
+                    FishID = sawShark.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1761,10 +1698,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = seaButterfly,
-                    FishLocation = ocean,
+                    FishID = seaButterfly.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 12, 1),
                     DateEnd = new DateTime(2000, 2, 29),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1772,10 +1709,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = seahorse,
-                    FishLocation = ocean,
+                    FishID = seahorse.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1783,10 +1720,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = seahorse,
-                    FishLocation = tropicalIsland,
+                    FishID = seahorse.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1794,10 +1731,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = shanghaiCrab,
-                    FishLocation = river,
+                    FishID = shanghaiCrab.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 9, 15),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1805,10 +1742,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = shark,
-                    FishLocation = ocean,
+                    FishID = shark.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 6, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1816,10 +1753,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = shark,
-                    FishLocation = tropicalIsland,
+                    FishID = shark.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1827,10 +1764,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = softshelledTurtle,
-                    FishLocation = river,
+                    FishID = softshelledTurtle.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 12, 1),
                     DateEnd = new DateTime(2000, 2, 29),
                     TimeBegin = new DateTime(2000, 1, 1, 16, 0, 0),
@@ -1838,10 +1775,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = squid,
-                    FishLocation = ocean,
+                    FishID = squid.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 12, 1),
                     DateEnd = new DateTime(2000, 8, 15),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1849,10 +1786,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = squid,
-                    FishLocation = tropicalIsland,
+                    FishID = squid.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1860,10 +1797,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = surgeonFish,
-                    FishLocation = ocean,
+                    FishID = surgeonFish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1871,10 +1808,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = surgeonFish,
-                    FishLocation = tropicalIsland,
+                    FishID = surgeonFish.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1882,10 +1819,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = sweetfish,
-                    FishLocation = river,
+                    FishID = sweetfish.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 7, 1),
                     DateEnd = new DateTime(2000, 9, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1893,10 +1830,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = tadpole,
-                    FishLocation = pond,
+                    FishID = tadpole.FishID,
+                    FishLocationID =pond.FishLocationID,
                     DateBegin = new DateTime(2000, 3, 1),
                     DateEnd = new DateTime(2000, 7, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1904,10 +1841,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = tuna,
-                    FishLocation = ocean,
+                    FishID = tuna.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 11, 1),
                     DateEnd = new DateTime(2000, 3, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1915,10 +1852,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = whaleShark,
-                    FishLocation = tropicalIsland,
+                    FishID = whaleShark.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1926,21 +1863,21 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = "Has a fin."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = yellowPerch,
-                    FishLocation = river,
+                    FishID = yellowPerch.FishID,
+                    FishLocationID =river.FishLocationID,
                     DateBegin = new DateTime(2000, 10, 1),
                     DateEnd = new DateTime(2000, 3, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
                     TimeEnd = new DateTime(2000, 1, 1, 23, 59, 59),
-                    AdditionalInformation = "Also found at the river's mouth."
+                    AdditionalInformation = "Also found at the river.FishLocationID's mouth."
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = zebraTurkeyfish,
-                    FishLocation = ocean,
+                    FishID = zebraTurkeyfish.FishID,
+                    FishLocationID =ocean.FishLocationID,
                     DateBegin = new DateTime(2000, 4, 1),
                     DateEnd = new DateTime(2000, 11, 30),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1948,10 +1885,10 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 },
 				
-				new FishTime
+                new FishTime
                 {
-                    Fish = zebraTurkeyfish,
-                    FishLocation = tropicalIsland,
+                    FishID = zebraTurkeyfish.FishID,
+                    FishLocationID =tropicalIsland.FishLocationID,
                     DateBegin = new DateTime(2000, 1, 1),
                     DateEnd = new DateTime(2000, 12, 31),
                     TimeBegin = new DateTime(2000, 1, 1, 0, 0, 0),
@@ -1959,6 +1896,7 @@ namespace NewDayNewLeaf.Migrations
                     AdditionalInformation = ""
                 }
             );
+            context.SaveChanges();
         }
     }
 }

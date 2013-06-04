@@ -164,6 +164,18 @@
     <Compile Include="Migrations\201306031752092_BlathersSaying.Designer.cs">
       <DependentUpon>201306031752092_BlathersSaying.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201306041523473_FishID.cs" />
+    <Compile Include="Migrations\201306041523473_FishID.Designer.cs">
+      <DependentUpon>201306041523473_FishID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306041652354_FishLocationID.cs" />
+    <Compile Include="Migrations\201306041652354_FishLocationID.Designer.cs">
+      <DependentUpon>201306041652354_FishLocationID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306041707287_ReAddKeys.cs" />
+    <Compile Include="Migrations\201306041707287_ReAddKeys.Designer.cs">
+      <DependentUpon>201306041707287_ReAddKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fish.cs" />
     <Compile Include="Models\FishVM.cs" />
@@ -293,6 +305,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201306031752092_BlathersSaying.resx">
       <DependentUpon>201306031752092_BlathersSaying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041523473_FishID.resx">
+      <DependentUpon>201306041523473_FishID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041652354_FishLocationID.resx">
+      <DependentUpon>201306041652354_FishLocationID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041707287_ReAddKeys.resx">
+      <DependentUpon>201306041707287_ReAddKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

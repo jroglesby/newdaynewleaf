@@ -17,8 +17,8 @@ namespace NewDayNewLeaf
             );
             config.Routes.MapHttpRoute(
                 name: "GetCurrentFish",
-                routeTemplate: "api/Fish/CurrentFish/{ticks}",
-                defaults: new { controller = "Fish", action = "GetCurrentFish", ticks = RouteParameter.Optional }
+                routeTemplate: "api/Fish/CurrentFish/{ticks}/{includeTropical}",
+                defaults: new { controller = "Fish", action = "GetCurrentFish", ticks = RouteParameter.Optional, includeTropical = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
