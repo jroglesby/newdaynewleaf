@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<form action="~/EditFish/Save" method="post" style="margin-left:10px">
+    <table style="width:100%">
+        <tr>
+            <td>
+                <h2>Edit Fish</h2>
+                @Html.Hidden("FishID")
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                Fish Name:
+            </td>
+            <td colspan="3">
+                @Html.TextBox("FishName")
+            </td>
+        </tr>
+        <tr >
+            <td colspan ="1">
+                Price:
+            </td>
+            <td colspan="3">
+                @Html.TextBox("Price")
+            </td>
+        </tr>
+        <tr >
+            <td colspan ="1">
+                Shadow Size:
+            </td>
+            <td colspan="3">
+                @Html.DropDownList("Shadow")
+            </td>
+        </tr>
+        <tr >
+            <td colspan ="1">
+                Rarity:
+            </td>
+            <td colspan="3">
+                @Html.DropDownList("Rarity")
+            </td>
+        </tr>
+        <tr >
+            <td colspan ="1">
+                Saying:
+            </td>
+            <td colspan="3">
+                @Html.TextArea("Saying")
+            </td>
+        </tr>
+    </table>
+    <input type="submit" id="save" name="save"/>
+</form>
