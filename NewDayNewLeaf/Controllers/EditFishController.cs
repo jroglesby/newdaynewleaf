@@ -25,7 +25,7 @@ namespace NewDayNewLeaf.Controllers
                 {
                     ViewData["FishID"] = editFish.FishID;
                     shadow = new SelectList(nlc.ShadowSize, "ShadowSizeID", "ShadowSizeText", editFish.ShadowSizeID);
-                    rarity = new SelectList(nlc.FishRarity, "FishRarityID", "Rarity", editFish.RarityID);
+                    rarity = new SelectList(nlc.FishRarity, "FishRarityID", "Rarity", editFish.FishRarityID);
                     ViewData["FishName"] = editFish.FishName;
                     ViewData["Price"] = editFish.Price;
                     ViewData["Saying"] = editFish.CheesySaying;
@@ -65,7 +65,7 @@ namespace NewDayNewLeaf.Controllers
             fish.FishName = FishName;
             fish.Price = price;
             fish.ShadowSizeID = shadow;
-            fish.RarityID = rarity;
+            fish.FishRarityID = rarity;
             fish.CheesySaying = saying;
 
             nlc.SaveChanges();
