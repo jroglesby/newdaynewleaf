@@ -1,11 +1,6 @@
 ﻿<div id="body">
     <section id="fishSection">
-        <div id="allFish">
-            <table id="fishTable">
-                <tr>
-                    <td class="inspectFishCol"></td><td class="fishNameCol">Name</td><td class="fishLocationCol">Location</td><td class="fishPriceCol">Price</td><td class="fishRarityCol">Rarity</td><td class="fishSizeCol">Shadow Size</td>
-                </tr>
-            </table>
+        <div id="allFish">    
 
         </div>
     </section>
@@ -32,22 +27,50 @@
 
             var buildFishTable = function (fishList) {
 
+                var boxCount = 0;
+
+                var fishCount = 0;
+
+
                 $.each(fishList, function (i, fish) {
-                    var fishRow = document.createElement("tr");
 
-                    var inspectRow = document.createElement("td");
-                    inspectRow.className = "inspectFishCol";
-                    var inspect = document.createElement("a");
-                    inspect.href = "/FishInfo/" + fish.FishName;
-                    inspect.appendChild(document.createTextNode("More Info"));
-                    inspectRow.appendChild(inspect);
+                    if (fishCount % 12 == 0) {
+                        boxCount++;
+                        var foundFishBox = document.createElement("div");
+                        foundFishBox.id = "foundFishBox" + boxCount;
+                        foundFishBox.className = "foundFishBox";
+                        $('#allFish').append(foundFishBox);
 
-                    var fishName = document.createElement("td");
-                    fishName.className = "fishNameCol";
+                        var foundFishTable = document.createElement("table");
+                        foundFishTable.id = "foundFishTable" + boxCount;
+                        foundFishTable.className = "foundFishTable";
+                        foundFishBox.appendChild(foundFishTable);
+                    }
+
+                    if (fishCount % 4 == 0) {
+                        var fishRow = document.createElement("tr");
+                        fishRow.className = "fishRow";
+                        $('#foundFishTable' + boxCount).append(fishRow);
+                    }
+
+                    var fishTd = document.createElement("td");
+                    fishTd.className = "fishTd";
+                    $('#foundFishTable' + boxCount + " tr:last").append(fishTd);
+
+                    var fishBoxLink = document.createElement("a");
+                    fishBoxLink.className = "fishBoxLink";
+                    fishBoxLink.href = "/FishInfo/" + fish.FishName;
+
+                    var fishBox = document.createElement("div");
+                    fishBox.className = "fishBox";
+                    fishBoxLink.appendChild(fishBox);
+
+                    var fishName = document.createElement("span");
+                    fishName.className = "fishNameSpan";
                     fishName.appendChild(document.createTextNode(fish.FishName));
 
-                    var fishLocation = document.createElement("td");
-                    fishLocation.className = "fishLocationCol";
+                    var fishLocation = document.createElement("span");
+                    fishLocation.className = "fishLocationSpan";
                     var FishTimes = fish.FishTimes.$values;
                     var location = "";
                     $.each(FishTimes, function (i, time) {
@@ -60,30 +83,34 @@
                     });
                     fishLocation.appendChild(document.createTextNode(location));
 
-                    var fishPrice = document.createElement("td");
-                    fishPrice.className = "fishPriceCol";
+                    var fishPrice = document.createElement("span");
+                    fishPrice.className = "fishPriceSpan";
                     var price = fish.Price;
                     price = $.format.number(price, '#,###');
                     fishPrice.appendChild(document.createTextNode(price));
 
-                    var fishRarity = document.createElement("td");
-                    fishRarity.className = "fishRarityCol";
+                    var fishRarity = document.createElement("span");
+                    fishRarity.className = "fishRaritySpan";
                     rarity = fish.Rarity;
                     fishRarity.appendChild(document.createTextNode(rarity));
 
-                    var shadowSize = document.createElement("td");
-                    shadowSize.className = "fishSizeCol";
+                    var shadowSize = document.createElement("span");
+                    shadowSize.className = "fishSizeSpan";
                     size = fish.ShadowSize;
                     shadowSize.appendChild(document.createTextNode(size));
 
-                    fishRow.appendChild(inspectRow);
-                    fishRow.appendChild(fishName);
-                    fishRow.appendChild(fishLocation);
-                    fishRow.appendChild(fishPrice);
-                    fishRow.appendChild(fishRarity);
-                    fishRow.appendChild(shadowSize);
+                    fishBox.appendChild(fishName);
+                    fishBox.appendChild(document.createElement("br"));
+                    fishBox.appendChild(fishLocation);
+                    fishBox.appendChild(document.createElement("br"));
+                    fishBox.appendChild(fishPrice);
+                    fishBox.appendChild(document.createElement("br"));
+                    fishBox.appendChild(fishRarity);
+                    fishBox.appendChild(document.createElement("br"));
+                    fishBox.appendChild(shadowSize);
 
-                    $('#fishTable tr:last').after(fishRow);
+                    fishTd.appendChild(fishBoxLink);
+                    fishCount++;
                 });
             };
 
@@ -96,6 +123,7 @@
                     dataType: "json",
                     success: function (fish) {
                         buildFishTable(fish.$values);
+                        $('#allFish').jshowoff({ autoPlay: false, links: false, effect: 'slideLeft', cssClass:'fishTable', changeSpeed: 1000 });
                     }
                 });
             });
