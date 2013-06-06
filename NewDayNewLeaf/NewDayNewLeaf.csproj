@@ -152,16 +152,44 @@
       <DependentUpon>201305302323427_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Controllers\FishInfoController.cs" />
     <Compile Include="Controllers\FishController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201306030059101_Initial.cs" />
+    <Compile Include="Migrations\201306030059101_Initial.Designer.cs">
+      <DependentUpon>201306030059101_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306031741270_RemoveKeys.cs" />
+    <Compile Include="Migrations\201306031741270_RemoveKeys.Designer.cs">
+      <DependentUpon>201306031741270_RemoveKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306031752092_BlathersSaying.cs" />
+    <Compile Include="Migrations\201306031752092_BlathersSaying.Designer.cs">
+      <DependentUpon>201306031752092_BlathersSaying.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306041523473_FishID.cs" />
+    <Compile Include="Migrations\201306041523473_FishID.Designer.cs">
+      <DependentUpon>201306041523473_FishID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306041652354_FishLocationID.cs" />
+    <Compile Include="Migrations\201306041652354_FishLocationID.Designer.cs">
+      <DependentUpon>201306041652354_FishLocationID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306041707287_ReAddKeys.cs" />
+    <Compile Include="Migrations\201306041707287_ReAddKeys.Designer.cs">
+      <DependentUpon>201306041707287_ReAddKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fish.cs" />
+    <Compile Include="Models\FishVM.cs" />
     <Compile Include="Models\NewLeafContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\NewDayNewLeaf.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -227,6 +255,9 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.format-1.2.js" />
+    <Content Include="Scripts\jquery.jshowoff.js" />
+    <Content Include="Scripts\jquery.numberformatter-1.2.3.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -265,6 +296,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\FishInfo\Index.cshtml" />
+    <Content Include="Views\FishInfo\AllFish.cshtml" />
     <Content Include="Views\EditFish\Index.cshtml" />
     <Content Include="Views\EditFish\save.cshtml" />
   </ItemGroup>
@@ -275,8 +308,23 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201305302323427_Initial.resx">
-      <DependentUpon>201305302323427_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201306030059101_Initial.resx">
+      <DependentUpon>201306030059101_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306031741270_RemoveKeys.resx">
+      <DependentUpon>201306031741270_RemoveKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306031752092_BlathersSaying.resx">
+      <DependentUpon>201306031752092_BlathersSaying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041523473_FishID.resx">
+      <DependentUpon>201306041523473_FishID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041652354_FishLocationID.resx">
+      <DependentUpon>201306041652354_FishLocationID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041707287_ReAddKeys.resx">
+      <DependentUpon>201306041707287_ReAddKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

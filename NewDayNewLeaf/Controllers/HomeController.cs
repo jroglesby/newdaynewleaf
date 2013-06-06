@@ -10,6 +10,7 @@ namespace NewDayNewLeaf.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "New Day, New Leaf";
             return View();
         }
     }

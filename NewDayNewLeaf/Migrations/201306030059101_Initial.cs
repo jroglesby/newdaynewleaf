@@ -21,7 +21,7 @@ namespace NewDayNewLeaf.Migrations
                     })
                 .PrimaryKey(t => t.FishID)
                 .ForeignKey("dbo.FishRarities", t => t.Rarity_FishRarityID)
-                .ForeignKey("dbo.ShadowSizes", t => t.ShadowSizeID, cascadeDelete: true)
+                .ForeignKey("dbo.ShadowSizes", t => t.ShadowSizeID)
                 .Index(t => t.Rarity_FishRarityID)
                 .Index(t => t.ShadowSizeID);
             

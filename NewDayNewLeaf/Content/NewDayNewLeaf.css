@@ -1,0 +1,86 @@
+﻿
+#fishSection {
+    width:760px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#allFish {
+    width:740px;
+    height:340px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:20px;
+    overflow:hidden;
+    z-index:10;
+}
+
+.fishBox {
+    width:150px;
+    height:100px;
+    float:left;
+    border:1px solid black;
+}
+.fishBox span {
+    margin-left:5px;
+}
+
+.fishBoxLink {
+    display:block;
+    height:100px;
+    width:150px;
+    padding:0px;
+    margin-right:2px;
+}
+
+.fishBoxLink:hover {
+    background-color:#c7d1d6;
+}
+
+.foundFishTable {
+    border:1px solid black;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding-left:5px;
+}
+
+.foundFishTable td {
+    padding-right:.1em;
+    padding-left:.1em;
+    padding-top:.1em;
+    padding-bottom:.1em;
+}
+
+
+.fishTable p.jshowoff-controls {
+    height:38px;
+    position:absolute;
+    overflow:visible;
+    width:120%;
+    top:140px;
+    z-index:1;
+    margin-left:-70px;
+}
+
+
+.fishTable .jshowoff-controls a {
+    display:block;
+    width:22px;
+    height:38px;
+    background:none;
+    margin:0px;
+    padding:0px;
+    position:absolute;
+}
+
+.fishTable p.jshowoff-controls a.jshowoff-play {
+    display:none;
+}
+.fishTable p.jshowoff-controls a.jshowoff-prev {
+    left:-15px;
+}
+.fishTable p.jshowoff-controls a.jshowoff-next {
+    right:15px;
+}

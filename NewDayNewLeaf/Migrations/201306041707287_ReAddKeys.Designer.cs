@@ -5,13 +5,13 @@ namespace NewDayNewLeaf.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class ReAddKeys : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ReAddKeys));
         
         string IMigrationMetadata.Id
         {
-            get { return "201305302323427_Initial"; }
+            get { return "201306041707287_ReAddKeys"; }
         }
         
         string IMigrationMetadata.Source
