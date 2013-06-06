@@ -19,5 +19,12 @@ namespace NewDayNewLeaf.Controllers
             return View();
         }
 
+        public ActionResult AllFish()
+        {
+            ViewBag.Title = "New Day, New Leaf";
+
+            return View();
+        }
+
     }
 }

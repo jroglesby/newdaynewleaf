@@ -13,6 +13,13 @@ namespace NewDayNewLeaf
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "FishInfoAll",
+                url: "FishInfo/AllFish/",
+                defaults: new { controller = "FishInfo", action = "AllFish" }
+            );
+
             routes.MapRoute(
                 name: "FishInfo",
                 url: "FishInfo/{fishName}",

@@ -12,18 +12,25 @@
     margin-right:auto;
     padding-top:20px;
     overflow:hidden;
+    z-index:10;
 }
 
 .fishBox {
     width:150px;
     height:100px;
     float:left;
+    border:1px solid black;
+}
+.fishBox span {
+    margin-left:5px;
 }
 
 .fishBoxLink {
     display:block;
     height:100px;
     width:150px;
+    padding:0px;
+    margin-right:2px;
 }
 
 .fishBoxLink:hover {
@@ -36,6 +43,7 @@
     margin-right:auto;
     margin-top:20px;
     margin-bottom:20px;
+    padding-left:5px;
 }
 
 .foundFishTable td {
@@ -52,7 +60,7 @@
     overflow:visible;
     width:120%;
     top:140px;
-    z-index:150;
+    z-index:1;
     margin-left:-70px;
 }
 
