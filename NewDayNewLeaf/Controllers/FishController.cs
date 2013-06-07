@@ -49,20 +49,27 @@ namespace NewDayNewLeaf.Controllers
 
             if (includeTropical == "N")
             {
-                fishTimes = nlc.FishTimes.Include("Fish").Include("Fish.Rarity").Include("Fish.ShadowSize").Include("FishLocation")
-                .Where(ft => ft.FishLocation.LocationName != "Tropical Island" && ft.DateBegin <= datePart && ft.DateEnd >= datePart && ((ft.TimeBegin < ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)) || (ft.TimeBegin > ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)))).OrderBy(ft => ft.Fish.FishName).ToList();
+                fishTimes = nlc.FishTimes.Include("Fish").Include("FishLocation")
+                .Where(ft => ft.FishLocation.LocationName != "Tropical Island" && ((ft.DateBegin < ft.DateEnd && ft.DateBegin <= datePart && ft.DateEnd >= datePart && ((ft.TimeBegin < ft.TimeEnd && (ft.TimeBegin <= timePart && ft.TimeEnd > timePart)) || (ft.TimeBegin > ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)))) || (ft.DateBegin > ft.DateEnd && ft.DateBegin <= datePart || ft.DateEnd >= datePart && ((ft.TimeBegin < ft.TimeEnd && (ft.TimeBegin <= timePart && ft.TimeEnd > timePart)) || (ft.TimeBegin > ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)))))).OrderBy(ft => ft.Fish.FishName).ToList();
             }
             else
             {
-                fishTimes = nlc.FishTimes.Include("Fish").Include("Fish.Rarity").Include("Fish.ShadowSize").Include("FishLocation")
-                .Where(ft => ft.FishLocation.LocationName == "Tropical Island" && ft.DateBegin <= datePart && ft.DateEnd >= datePart && ((ft.TimeBegin < ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)) || (ft.TimeBegin > ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)))).OrderBy(ft => ft.Fish.FishName).ToList();
+                fishTimes = nlc.FishTimes.Include("Fish").Include("FishLocation")
+                .Where(ft => ft.FishLocation.LocationName == "Tropical Island" && ((ft.DateBegin < ft.DateEnd && ft.DateBegin <= datePart && ft.DateEnd >= datePart && ((ft.TimeBegin < ft.TimeEnd && (ft.TimeBegin <= timePart && ft.TimeEnd > timePart)) || (ft.TimeBegin > ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)))) || (ft.DateBegin > ft.DateEnd && ft.DateBegin <= datePart || ft.DateEnd >= datePart && ((ft.TimeBegin < ft.TimeEnd && (ft.TimeBegin <= timePart && ft.TimeEnd > timePart)) || (ft.TimeBegin > ft.TimeEnd && (ft.TimeBegin <= timePart || ft.TimeEnd > timePart)))))).OrderBy(ft => ft.Fish.FishName).ToList();
             }
 
             foreach (FishTime ft in fishTimes)
             {
                 if (!fishes.Any(f => f.FishName == ft.Fish.FishName))
                 {
-                    fishes.Add(ft.Fish);
+                    var fish = nlc.Fishes.Include("Rarity").Include("ShadowSize").Where(f => f.FishID == ft.FishID).FirstOrDefault();
+                    fish.FishTimes.Add(ft);
+                    fishes.Add(fish);
+                }
+                else
+                {
+                    var fish = fishes.Where(f => f.FishName == ft.Fish.FishName).FirstOrDefault();
+                    fish.FishTimes.Add(ft);
                 }
             }
 
