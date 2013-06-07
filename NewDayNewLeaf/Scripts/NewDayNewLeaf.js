@@ -2,6 +2,8 @@
     var epochTicks = 621355968000000000;
     var ticksPerMillisecond = 10000;
     var ticks = epochTicks + (date.getTime() * ticksPerMillisecond);
+    var utcOffset = date.getTimezoneOffset() * 60 * 1000;
+    ticks = ticks - utcOffset;
     return ticks;
 }
 
@@ -42,21 +44,21 @@ var buildFishTable = function (fishList) {
             foundFishBox.className = "foundFishBox";
             $('#allFish').append(foundFishBox);
 
-            var foundFishTable = document.createElement("table");
+            var foundFishTable = document.createElement("ul");
             foundFishTable.id = "foundFishTable" + boxCount;
             foundFishTable.className = "foundFishTable";
             foundFishBox.appendChild(foundFishTable);
         }
 
-        if (fishCount % 4 == 0) {
+        /*if (fishCount % 4 == 0) {
             var fishRow = document.createElement("tr");
             fishRow.className = "fishRow";
             $('#foundFishTable' + boxCount).append(fishRow);
-        }
+        }*/
 
-        var fishTd = document.createElement("td");
+        var fishTd = document.createElement("li");
         fishTd.className = "fishTd";
-        $('#foundFishTable' + boxCount + " tr:last").append(fishTd);
+        $('#foundFishTable'+boxCount).append(fishTd);
 
         var fishBoxLink = document.createElement("a");
         fishBoxLink.className = "fishBoxLink";
