@@ -1,129 +1,32 @@
 ﻿<div id="body">
     <section id="fishSection">
-        <div id="allFish">    
-
-        </div>
+        <input type="checkbox" name="ShowTropical" id="ShowTropical" /><label for="ShowTropical">Show Tropical Fish?</label>
     </section>
     
     @section Scripts {
+        @Scripts.Render("~/bundles/NewDayNewLeaf");
         <script>
-
-
-            function getDateTicks(date) {
-                var epochTicks = 621355968000000000;
-                var ticksPerMillisecond = 10000;
-                var ticks = epochTicks + (date.getTime() * ticksPerMillisecond);
-                return ticks;
-            }
 
             var currentdate = new Date();
             currentticks = getDateTicks(currentdate);
-
-
-
-
             var GetFishURL = '/api/Fish/CurrentFish/'+currentticks+'/N';
-            
-
-            var buildFishTable = function (fishList) {
-
-                var boxCount = 0;
-
-                var fishCount = 0;
-
-
-                $.each(fishList, function (i, fish) {
-
-                    if (fishCount % 12 == 0) {
-                        boxCount++;
-                        var foundFishBox = document.createElement("div");
-                        foundFishBox.id = "foundFishBox" + boxCount;
-                        foundFishBox.className = "foundFishBox";
-                        $('#allFish').append(foundFishBox);
-
-                        var foundFishTable = document.createElement("table");
-                        foundFishTable.id = "foundFishTable" + boxCount;
-                        foundFishTable.className = "foundFishTable";
-                        foundFishBox.appendChild(foundFishTable);
-                    }
-
-                    if (fishCount % 4 == 0) {
-                        var fishRow = document.createElement("tr");
-                        fishRow.className = "fishRow";
-                        $('#foundFishTable' + boxCount).append(fishRow);
-                    }
-
-                    var fishTd = document.createElement("td");
-                    fishTd.className = "fishTd";
-                    $('#foundFishTable' + boxCount + " tr:last").append(fishTd);
-
-                    var fishBoxLink = document.createElement("a");
-                    fishBoxLink.className = "fishBoxLink";
-                    fishBoxLink.href = "/FishInfo/" + fish.FishName;
-
-                    var fishBox = document.createElement("div");
-                    fishBox.className = "fishBox";
-                    fishBoxLink.appendChild(fishBox);
-
-                    var fishName = document.createElement("span");
-                    fishName.className = "fishNameSpan";
-                    fishName.appendChild(document.createTextNode(fish.FishName));
-
-                    var fishLocation = document.createElement("span");
-                    fishLocation.className = "fishLocationSpan";
-                    var FishTimes = fish.FishTimes.$values;
-                    var location = "";
-                    $.each(FishTimes, function (i, time) {
-                        if (i == 0) {
-                            location = time.LocationName;
-                        }
-                        else {
-                            location = location + ", " + time.LocationName;
-                        }
-                    });
-                    fishLocation.appendChild(document.createTextNode(location));
-
-                    var fishPrice = document.createElement("span");
-                    fishPrice.className = "fishPriceSpan";
-                    var price = fish.Price;
-                    price = $.format.number(price, '#,###');
-                    fishPrice.appendChild(document.createTextNode(price));
-
-                    var fishRarity = document.createElement("span");
-                    fishRarity.className = "fishRaritySpan";
-                    rarity = fish.Rarity;
-                    fishRarity.appendChild(document.createTextNode(rarity));
-
-                    var shadowSize = document.createElement("span");
-                    shadowSize.className = "fishSizeSpan";
-                    size = fish.ShadowSize;
-                    shadowSize.appendChild(document.createTextNode(size));
-
-                    fishBox.appendChild(fishName);
-                    fishBox.appendChild(document.createElement("br"));
-                    fishBox.appendChild(fishLocation);
-                    fishBox.appendChild(document.createElement("br"));
-                    fishBox.appendChild(fishPrice);
-                    fishBox.appendChild(document.createElement("br"));
-                    fishBox.appendChild(fishRarity);
-                    fishBox.appendChild(document.createElement("br"));
-                    fishBox.appendChild(shadowSize);
-
-                    fishTd.appendChild(fishBoxLink);
-                    fishCount++;
-                });
-            };
+            var GetTropicalFishURL = '/api/Fish/CurrentFish/'+currentticks+'/Y';
 
             $(document).ready(function () {
-                $.ajax({
-                    cache: false,
-                    type: "GET",
-                    async: false,
-                    url: GetFishURL,
-                    dataType: "json",
-                    success: function (fish) {
-                        buildFishTable(fish.$values);
-                        $('#allFish').jshowoff({ autoPlay: false, links: false, effect: 'slideLeft', cssClass:'fishTable', changeSpeed: 1000 });
+                loadFishTable(GetFishURL);
+
+                $('#ShowTropical').change(function () {
+                    if ($(this).is(":checked")) {
+                        //$("#fishSection").fadeOut(500);
+                        $("#allFish").remove();
+                        loadFishTable(GetTropicalFishURL);
+                        //$("#fishSection").fadeIn(500);
+                    }
+                    else {
+                        //$("#fishSection").fadeOut(500);
+                        $("#allFish").remove();
+                        loadFishTable(GetFishURL);
+                        //$("#fishSection").fadeIn(500);
                     }
                 });
             });

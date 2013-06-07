@@ -5,6 +5,13 @@
     margin-right:auto;
 }
 
+label {
+    display:inline;
+    margin-left:10px;
+    font-size:1.2em;
+    font-weight:bold;
+}
+
 #allFish {
     width:740px;
     height:340px;
