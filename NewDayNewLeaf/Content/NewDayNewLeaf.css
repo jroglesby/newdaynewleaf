@@ -5,9 +5,16 @@
     margin-right:auto;
 }
 
+label {
+    display:inline;
+    margin-left:10px;
+    font-size:1.2em;
+    font-weight:bold;
+}
+
 #allFish {
-    width:740px;
-    height:340px;
+    max-width:740px;
+    height:350px;
     margin-left:auto;
     margin-right:auto;
     padding-top:20px;
@@ -38,12 +45,26 @@
 }
 
 .foundFishTable {
-    border:1px solid black;
     margin-left:auto;
     margin-right:auto;
     margin-top:20px;
     margin-bottom:20px;
     padding-left:5px;
+    list-style:none;
+    max-width:640px;
+}
+
+.foundFishTable li {
+    width:150px;
+    height:100px;
+    float:left;
+    padding-right:.1em;
+    padding-left:.1em;
+    padding-top:.1em;
+    padding-bottom:.1em;
+    margin-left:2px;
+    margin-right:2px;
+    margin-top:2px;
 }
 
 .foundFishTable td {
